@@ -41,11 +41,11 @@ module.exports.signup = async (req, res) => {
 
 module.exports.login = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-    if (!username || !email || !password)
+    const { username, password } = req.body;
+    if (!username || !password)
       return res.status(400).json("all fields must be filled");
 
-    const user = await User.findOne({ username, email });
+    const user = await User.findOne({ username });
     // console.log("this is the user on login");
     // console.log("-/-/-/-/-/-/-/-/-/-/");
     // console.log(user);

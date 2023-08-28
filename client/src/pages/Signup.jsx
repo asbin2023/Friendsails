@@ -46,7 +46,7 @@ const Signup = () => {
 
         try {
             const response = await axios.post('/api/user/signup', (formInput))
-            const token = await response.data.token
+            const token = response.data.token
             localStorage.setItem("token", token)
 
 
@@ -55,11 +55,7 @@ const Signup = () => {
             console.log(err.message)
         }
 
-        setFormInput({
-            email: '',
-            username: '',
-            password: ''
-        })
+        handleReset()
     }
 
     return (
