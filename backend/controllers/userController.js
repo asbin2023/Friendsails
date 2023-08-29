@@ -32,7 +32,7 @@ module.exports.signup = async (req, res) => {
       { expiresIn: "7d" }
     );
 
-    res.status(200).json({ token });
+    res.status(200).json({ token, username: newUser.username });
   } catch (err) {
     console.log("error in userController");
     console.log(err.message);
@@ -62,21 +62,11 @@ module.exports.login = async (req, res) => {
       { expiresIn: "7d" }
     );
 
-    res.status(200).json({ token });
+    res.status(200).json({ token, username: user.username });
   } catch (err) {
     console.log("error in userController, login");
     console.log(err.message);
   }
-};
-
-module.exports.logout = (req, res) => {
-  console.log("resetting cookies");
-  res
-    .cookie("token", "", {
-      httpOnly: true,
-      expires: new Date(0),
-    })
-    .send();
 };
 
 //later on add packages to verify email && check password

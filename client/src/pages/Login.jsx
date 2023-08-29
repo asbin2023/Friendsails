@@ -30,8 +30,9 @@ const Login = () => {
 
         try {
             const response = await axios.post('/api/user/login', formInput)
-            let token = response.data.token
-            localStorage.setItem("token", token)
+            let data = response.data
+            localStorage.setItem('username', data.username)
+            localStorage.setItem("token", data.token)
         } catch (err) {
             console.log('err on login submit')
             console.log(err.message)

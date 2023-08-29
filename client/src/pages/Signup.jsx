@@ -46,8 +46,9 @@ const Signup = () => {
 
         try {
             const response = await axios.post('/api/user/signup', (formInput))
-            const token = response.data.token
-            localStorage.setItem("token", token)
+            const data = response.data
+            localStorage.setItem("token", data.token)
+            localStorage.setItem('username', data.username)
 
 
         } catch (err) {
