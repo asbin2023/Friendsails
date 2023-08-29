@@ -11,6 +11,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
+      "/deezer": {
+        target: "https://api.deezer.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/deezer/, ""),
+      },
     },
   },
 });

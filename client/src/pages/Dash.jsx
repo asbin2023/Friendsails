@@ -1,3 +1,4 @@
+import Search from "../components/Search"
 
 
 
@@ -5,7 +6,8 @@
 const Dash = () => {
     return (
         <div>
-            ur dashboard
+
+            <Search />
         </div>
     )
 }
