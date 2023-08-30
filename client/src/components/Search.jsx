@@ -9,23 +9,33 @@ const Search = () => {
     const [album, setAlbum] = useState("");
 
     async function handleSubmit() {
+        console.clear()
         try {
-            let newInput = "";
-            let idx = "";
-            for (let i = 0; i < artist.length; i++) {
-                if (artist[i] === " ") {
-                    idx = artist.indexOf(artist[i]);
+            let taylorPut = "";
+            if (artist.includes('taylor')) {
+                let idx = "";
+                if (artist)
+                    for (let i = 0; i < artist.length; i++) {
+                        if (artist[i] === " ") {
+                            idx = artist.indexOf(artist[i]);
+                        }
+                    }
+                if (idx) {
+                    let arr = artist.split("");
+
+                    arr.splice(idx, 9999);
+                    taylorPut = arr.join("")
+                }
+            }
+            for (let i of artist) {
+                if (i === ' ') {
+                    artist.replace(" ", '_')
                 }
             }
 
-            if (idx) {
-                let arr = artist.split("");
-
-                arr.splice(idx, 9999);
-                newInput = arr.join("");
-            }
+            console.log(taylorPut)
             const response = await axios.get(
-                `/deezer/search?q=artist:"${newInput ? newInput : artist
+                `/deezer/search?q=artist:"${taylorPut ? taylorPut : artist
                 }"track:"${track}"album:"${album}"`
             );
 
@@ -70,9 +80,19 @@ const Search = () => {
 
                 {result?.artist || result?.track || result?.album ? (
                     <div>
-                        <h4>Artist Name: {result?.artist.name || "none"}</h4>
-                        {track && <h4>Track Name: {result?.title || "none"}</h4>}
-                        {album && <h4>Album Name: {result?.album.title || "none"}</h4>}
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <img style={{ borderRadius: '50%' }} src={result.artist.picture} width={30} alt="" />
+                            <span style={{ color: 'white' }}>i</span>
+                            <h2>{result?.artist.name || "none"}</h2>
+                        </div>
+                        {track && <div>
+                            <h2> Track: {result?.title || "none"}</h2>
+
+                        </div>}
+                        {album && <div>
+                            <h4>         {result?.album.title || "none"}</h4>
+                            <img src={result?.album.cover} alt="" />
+                        </div>}
                     </div>
                 ) : (
                     <h4>No match found. Please make sure all the fields are correct</h4>
