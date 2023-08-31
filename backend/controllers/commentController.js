@@ -9,10 +9,11 @@ module.exports.getComments = async (req, res) => {
     if (!id || !username || !postId) {
       return res.status(400).json({ message: "missing credentials" });
     }
-    const user = await User.findById(id);
-
-    let post = user.posts.filter((item) => item._id == postId);
-    res.status(200).json({ comments: post[0].comments });
+    const comments = await Comment.find({ post: postId }).populate(
+      "post",
+      "title body user"
+    );
+    res.status(200).json({ comments });
   } catch (err) {
     console.log("error in comment controller");
     console.log(err.message);
@@ -30,20 +31,11 @@ module.exports.postComment = async (req, res) => {
     if (!id || !username || !postId || !commentText) {
       return res.status(400).json({ message: "missing credentials" });
     }
+    const post = await Post.findById(postId);
 
-    const user = await User.findOneAndUpdate(
-      { _id: id, "posts._id": postId },
-      {
-        $push: {
-          "posts.$.comments": {
-            commentText,
-          },
-        },
-      },
-      { new: true }
-    );
+    const comment = await Comment.create({ commentText, post });
 
-    res.status(200).json({ user });
+    res.status(200).json({ comment });
   } catch (err) {
     console.log("err with post comment on commentcontroller");
     console.log(err.message);
@@ -59,21 +51,32 @@ module.exports.deleteComment = async (req, res) => {
       return res.status(400).json({ message: "missing credentials" });
     }
 
-    const user = await User.findOneAndUpdate(
-      { _id: id, "posts._id": postId },
-      {
-        $pull: {
-          "posts.$.comments": {
-            _id: commentId,
-          },
-        },
-      },
-      { new: true }
-    );
+    await Comment.findByIdAndDelete(commentId);
 
-    res.status(200).json({ user });
+    res.status(200).json({ message: "deleted comment" });
   } catch (err) {
     console.log("err with post comment on commentcontroller");
+    console.log(err.message);
+  }
+};
+
+module.exports.updateComment = async (req, res) => {
+  console.log("hey");
+  try {
+    const { id, username } = req;
+    const { commentText } = req.body;
+    const { postId, commentId } = req.params;
+
+    if (!id || !username || !commentText || !postId || !commentId) {
+      return res.status(404).json({ message: "unauthorized" });
+    }
+    const comment = await Comment.findOneAndUpdate(
+      { _id: commentId, post: postId },
+      { commentText },
+      { new: true }
+    );
+    res.status(200).json({ comment });
+  } catch (err) {
     console.log(err.message);
   }
 };

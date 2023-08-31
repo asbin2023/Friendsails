@@ -62,6 +62,7 @@ module.exports.deletePost = async (req, res) => {
     }
 
     await Post.findByIdAndDelete(postId);
+    await Comment.findOneAndDelete({ post: postId });
 
     res.status(200).json({ message: "successfully deleted the user" });
   } catch (err) {
