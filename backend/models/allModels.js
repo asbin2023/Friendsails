@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
-const commentSchema = new mongoose.Schema(
+const Schema = mongoose.Schema;
+
+const commentSchema = new Schema(
   {
     commentText: {
       type: String,
@@ -9,11 +11,18 @@ const commentSchema = new mongoose.Schema(
     reactions: {
       type: String,
     },
+    post: {
+      type: Schema.Types.ObjectId,
+      ref: "Post",
+    },
   },
+
   { timestamps: true }
 );
 
-const postSchema = new mongoose.Schema(
+const Comment = mongoose.model("Comment", commentSchema);
+
+const postSchema = new Schema(
   {
     title: {
       type: String,
@@ -26,12 +35,17 @@ const postSchema = new mongoose.Schema(
     image: {
       type: String,
     },
-    comments: [commentSchema],
+
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   { timestamps: true }
 );
 
-const userSchema = new mongoose.Schema(
+const Post = mongoose.model("Post", postSchema);
+const userSchema = new Schema(
   {
     username: {
       type: String,
@@ -48,11 +62,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    posts: [postSchema],
   },
   { timestamps: true }
 );
 
 const User = mongoose.model("User", userSchema);
 
-module.exports = User;
+module.exports = {
+  User,
+  Comment,
+  Post,
+};

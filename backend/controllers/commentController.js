@@ -1,4 +1,4 @@
-const User = require("../models/userModel");
+const { User, Post, Comment } = require("../models/allModels");
 const mongoose = require("mongoose");
 
 module.exports.getComments = async (req, res) => {

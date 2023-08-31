@@ -1,4 +1,4 @@
-const User = require("../models/userModel");
+const { User, Post, Comment } = require("../models/allModels");
 
 module.exports.getPosts = async (req, res) => {
   try {
@@ -6,31 +6,27 @@ module.exports.getPosts = async (req, res) => {
     if (!id || !username) {
       return res.status(404).json("unauthorized");
     }
-    const foundUser = await User.findOne({ _id: id, username });
-    res.status(200).json({ posts: foundUser.posts });
+    const posts = await Post.find({ user: id }).populate("user", "username");
+
+    res.status(200).json({ posts });
   } catch (err) {
     console.log(err.message);
   }
 };
 
 module.exports.createPost = async (req, res) => {
+  console.clear();
+  console.log(req.body);
   try {
     let { id, username } = req;
-    let { title, body } = req.body;
+    let { title, body, image } = req.body;
     if (!id || !username || !title || !body) {
       return res.status(404).json("unauthorized");
     }
+    const user = await User.findOne({ _id: id, username });
+    const post = await Post.create({ title, body, image, user });
 
-    const user = await User.findByIdAndUpdate(
-      id,
-      {
-        $push: {
-          posts: { ...req.body },
-        },
-      },
-      { new: true }
-    );
-    return res.status(200).json({ posts: user.posts });
+    return res.status(200).json({ post });
   } catch (err) {
     console.log("error in createPost in controller");
     console.log(err.message);
