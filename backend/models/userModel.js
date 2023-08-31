@@ -1,7 +1,4 @@
 const mongoose = require("mongoose");
-const songSchema = require("./songSchema");
-const albumSchema = require("./albumSchema");
-const artistSchema = require("./artistSchema");
 
 const userSchema = new mongoose.Schema(
   {
@@ -19,15 +16,6 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-    },
-    songList: {
-      type: [songSchema],
-    },
-    albumList: {
-      type: [albumSchema],
-    },
-    artistList: {
-      type: [artistSchema],
     },
   },
   { timestamps: true }

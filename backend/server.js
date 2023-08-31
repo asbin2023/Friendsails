@@ -1,6 +1,5 @@
 require("dotenv").config();
 const cors = require("cors");
-const User = require("./models/userModel");
 
 const authM = require("./middlewares/authM");
 

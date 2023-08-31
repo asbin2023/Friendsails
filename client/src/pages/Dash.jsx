@@ -1,4 +1,4 @@
-import Search from "../components/Search"
+
 
 
 
@@ -7,7 +7,7 @@ const Dash = () => {
     return (
         <div>
 
-            <Search />
+            dash dash
         </div>
     )
 }
