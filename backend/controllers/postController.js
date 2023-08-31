@@ -15,8 +15,6 @@ module.exports.getPosts = async (req, res) => {
 };
 
 module.exports.createPost = async (req, res) => {
-  console.clear();
-  console.log(req.body);
   try {
     let { id, username } = req;
     let { title, body, image } = req.body;
@@ -34,6 +32,8 @@ module.exports.createPost = async (req, res) => {
 };
 
 module.exports.updatePost = async (req, res) => {
+  console.clear();
+  console.log(req.body);
   try {
     const { id, username } = req;
     const { postId } = req.params;
@@ -42,19 +42,11 @@ module.exports.updatePost = async (req, res) => {
       return res.status(403).json({ message: "unauthorized" });
     }
 
-    const user = await User.findOneAndUpdate(
-      {
-        _id: id,
-        "posts._id": postId,
-      },
-      {
-        "posts.$.title": title,
-        "posts.$.body": body,
-        "posts.$.image": image,
-      },
-      { new: true }
+    const post = await Post.updateOne(
+      { _id: postId, user: id },
+      { title, body, image }
     );
-    res.status(200).json({ user });
+    res.status(200).json({ post });
   } catch (err) {
     console.log("error in the updatePost controller");
     console.log(err.message);
@@ -68,11 +60,9 @@ module.exports.deletePost = async (req, res) => {
     if (!id || !username || !postId) {
       return res.status(403).json({ message: "unauthorized" });
     }
-    const user = await User.findByIdAndUpdate(id, {
-      $pull: {
-        posts: { _id: postId },
-      },
-    });
+
+    await Post.findByIdAndDelete(postId);
+
     res.status(200).json({ message: "successfully deleted the user" });
   } catch (err) {
     console.log("error in deleting post in controlller");
