@@ -22,7 +22,6 @@ module.exports.getComments = async (req, res) => {
 // commentText
 
 module.exports.postComment = async (req, res) => {
-  console.clear();
   try {
     const { id, username } = req;
     const { postId } = req.params;
@@ -38,6 +37,34 @@ module.exports.postComment = async (req, res) => {
         $push: {
           "posts.$.comments": {
             commentText,
+          },
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ user });
+  } catch (err) {
+    console.log("err with post comment on commentcontroller");
+    console.log(err.message);
+  }
+};
+
+module.exports.deleteComment = async (req, res) => {
+  try {
+    const { id, username } = req;
+    const { postId, commentId } = req.params;
+
+    if (!id || !username || !postId || !commentId) {
+      return res.status(400).json({ message: "missing credentials" });
+    }
+
+    const user = await User.findOneAndUpdate(
+      { _id: id, "posts._id": postId },
+      {
+        $pull: {
+          "posts.$.comments": {
+            _id: commentId,
           },
         },
       },
