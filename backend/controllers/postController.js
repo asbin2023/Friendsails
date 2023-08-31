@@ -17,12 +17,10 @@ module.exports.createPost = async (req, res) => {
   try {
     let { id, username } = req;
     let { title, body } = req.body;
-    if (!id || !username) {
+    if (!id || !username || !title || !body) {
       return res.status(404).json("unauthorized");
     }
-    if (!title || !body) {
-      return res.status(400).json({ message: "missing fields" });
-    }
+
     const user = await User.findByIdAndUpdate(
       id,
       {
@@ -44,12 +42,10 @@ module.exports.updatePost = async (req, res) => {
     const { id, username } = req;
     const { postId } = req.params;
     const { title, body, image } = req.body;
-    if (!id || !username) {
+    if (!id || !username || !postId || !title || !body) {
       return res.status(403).json({ message: "unauthorized" });
     }
-    if (!title || !body) {
-      return res.status(403).json({ message: "unauthorized" });
-    }
+
     const user = await User.findOneAndUpdate(
       {
         _id: id,
@@ -71,6 +67,17 @@ module.exports.updatePost = async (req, res) => {
 
 module.exports.deletePost = async (req, res) => {
   try {
+    const { id, username } = req;
+    const { postId } = req.params;
+    if (!id || !username || !postId) {
+      return res.status(403).json({ message: "unauthorized" });
+    }
+    const user = await User.findByIdAndUpdate(id, {
+      $pull: {
+        posts: { _id: postId },
+      },
+    });
+    res.status(200).json({ message: "successfully deleted the user" });
   } catch (err) {
     console.log("error in deleting post in controlller");
     console.log(err.message);
