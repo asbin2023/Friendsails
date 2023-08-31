@@ -7,7 +7,7 @@ function authM(req, res, next) {
       res.status(404).json("not allowed in, missing token in the header");
       return;
     }
-    console.log(token);
+    // console.log(token);
 
     let payload = jwt.verify(token, process.env.SECRET);
     if (payload.error) {

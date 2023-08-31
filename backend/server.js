@@ -16,10 +16,9 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("hello");
 });
-app.get("/hey", (req, res) => {
-  res.send("hello and welcome to my site");
-});
+
 app.use("/user", require("./routers/userRoutes"));
+app.use("/user/posts", authM, require("./routers/postRoutes"));
 
 app.get("/secret", authM, (req, res) => {
   console.log(req.id);
