@@ -19,6 +19,7 @@ app.get("/", (req, res) => {
 
 app.use("/user", require("./routers/userRoutes"));
 app.use("/user/posts", authM, require("./routers/postRoutes"));
+app.use("/user/posts/comments", authM, require("./routers/commentRoutes"));
 
 app.get("/secret", authM, (req, res) => {
   console.log(req.id);
