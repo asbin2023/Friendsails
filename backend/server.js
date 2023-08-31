@@ -21,8 +21,11 @@ app.get("/hey", (req, res) => {
 });
 app.use("/user", require("./routers/userRoutes"));
 
-// app.get("/secret", authM, (req, res) => {
-//   res.send("this is the secret route!");
-// });
+app.get("/secret", authM, (req, res) => {
+  console.log(req.id);
+  console.log(req.username);
+  console.log(req.body);
+  res.send("this is the secret route!");
+});
 
 app.listen(process.env.PORT, console.log("running on: ", process.env.PORT));

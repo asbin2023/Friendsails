@@ -1,5 +1,32 @@
 const mongoose = require("mongoose");
 
+const commentSchema = new mongoose.Schema(
+  {
+    commentText: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
+
+const postSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    body: {
+      type: String,
+    },
+    image: {
+      type: String,
+    },
+    comments: [commentSchema],
+  },
+  { timestamps: true }
+);
+
 const userSchema = new mongoose.Schema(
   {
     username: {
@@ -17,6 +44,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    posts: [postSchema],
   },
   { timestamps: true }
 );
