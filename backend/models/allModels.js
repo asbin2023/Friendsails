@@ -96,11 +96,7 @@ const userProfileSchema = new Schema({
     type: String,
     required: true,
   },
-  posts: {
-    type: String,
-    required: true,
-  },
-  comments: {
+  username: {
     type: String,
     required: true,
   },
