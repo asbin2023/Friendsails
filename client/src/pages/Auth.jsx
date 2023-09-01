@@ -93,6 +93,9 @@ const Auth = () => {
 
     return (
         <div>
+            <div className="welcome-div">
+                <h1>Welcome to placeholder. Let's get you started</h1>
+            </div>
             <form onSubmit={handleSignupFormSubmit}>
                 <label htmlFor="signup-email">Your email</label>
                 <input
@@ -137,6 +140,8 @@ const Auth = () => {
                     Clear
                 </button>
             </form>
+            <h2>Already have an account ?</h2>
+            <h3>sign in</h3>
             <div>
                 <form onSubmit={handleLoginFormSubmit}>
                     <label htmlFor="login-username">Enter your Username</label>
@@ -165,6 +170,7 @@ const Auth = () => {
                     </button>
                 </form>
             </div>
+
         </div>
     );
 };
