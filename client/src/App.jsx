@@ -1,41 +1,49 @@
-import { Link } from "react-router-dom"
-import Router from "./Router"
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loggedIn } from "../redux/loggedSlice";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Dash from "./pages/Dash";
+import Notfound from "./pages/Notfound";
+import Home from "./pages/Home";
 
+// command option i for inspect shortcut!
+
+// if (location != '/' || location != '/login' || location != '/signup' || location != '/dash') {
+//     navigate('/')
+// }
 
 const App = () => {
-    function handleLogout() {
+    const logged = useSelector((state) => state.logged);
+    const token = localStorage.getItem("token");
+    const dispatch = useDispatch();
 
-        localStorage.clear()
-    }
+    useEffect(() => {
+        dispatch(loggedIn(token));
+    }, [logged]);
 
     return (
         <div>
-            <nav style={{ marginBottom: '30px' }}>
-                <Link to={'/signup'}> <button>
-                    Signup
-                </button>
-                </Link>
-                <Link to={'/login'}> <button>
-                    Login
-                </button>
-                </Link>
-                <Link onClick={handleLogout}>
-                    <button>Logout</button>
-                </Link>
-                <span style={{ marginLeft: '10px' }}>
-                    Welcome {localStorage.getItem('username') ? localStorage.getItem('username') : 'Stranger'}
-                </span>
-                <Link to={'/dash'}>
-                    <button>
-                        Dashboard</button></Link>
-
-            </nav>
-
-
-
-            <Router />
+            <h1>hi</h1>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route
+                    path="/login"
+                    element={!logged ? <Login /> : <Navigate to="/dash" />}
+                />
+                <Route
+                    path="/signup"
+                    element={!logged ? <Signup /> : <Navigate to="/dash" />}
+                />
+                <Route
+                    path="/dash"
+                    element={logged ? <Dash /> : <Navigate to="/login" />}
+                />
+                <Route path="*" element={<Notfound />} />
+            </Routes>
         </div>
-    )
-}
+    );
+};
 
-export default App
+export default App;

@@ -1,9 +1,11 @@
 import axios from "axios"
 import { useState } from "react"
+import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
-
+import { loggedIn } from "../../redux/loggedSlice"
 
 const Login = () => {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const [formInput, setFormInput] = useState({
         username: '',
@@ -33,6 +35,8 @@ const Login = () => {
             let data = response.data
             localStorage.setItem('username', data.username)
             localStorage.setItem("token", data.token)
+            let token = localStorage.getItem('token')
+            dispatch(loggedIn(token))
         } catch (err) {
             console.log('err on login submit')
             console.log(err.message)

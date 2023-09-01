@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { loggedIn } from "../../redux/loggedSlice";
+import { useDispatch } from "react-redux";
+
 
 const regex = /[^A-Za-z0-9]+/g;
 
 const Signup = () => {
+    const dispatch = useDispatch()
     const navigate = useNavigate();
 
 
@@ -49,6 +53,8 @@ const Signup = () => {
             const data = response.data
             localStorage.setItem("token", data.token)
             localStorage.setItem('username', data.username)
+            const token = localStorage.getItem('token')
+            dispatch(loggedIn(token))
 
 
         } catch (err) {

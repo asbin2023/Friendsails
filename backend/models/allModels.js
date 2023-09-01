@@ -62,6 +62,8 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    friendRequest: [String],
+    friends: [String],
   },
   { timestamps: true }
 );
