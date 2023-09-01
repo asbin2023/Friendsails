@@ -68,8 +68,53 @@ const userSchema = new Schema(
 
 const User = mongoose.model("User", userSchema);
 
+//add hobbies later on
+//also privacy
+
+const userProfileSchema = new Schema({
+  picture: {
+    type: String,
+    required: true,
+  },
+  background: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  about: {
+    type: String,
+    required: true,
+  },
+  location: {
+    type: String,
+    required: true,
+  },
+  link: {
+    type: String,
+    required: true,
+  },
+  posts: {
+    type: String,
+    required: true,
+  },
+  comments: {
+    type: String,
+    required: true,
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+});
+
+const UserProfile = mongoose.model("UserProfile", userProfileSchema);
+
 module.exports = {
   User,
   Comment,
   Post,
+  UserProfile,
 };
