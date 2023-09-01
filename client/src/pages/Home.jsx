@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { loggedIn } from "../../redux/loggedSlice";
@@ -14,17 +13,27 @@ const Home = () => {
 
     return (
         <div>
-            <nav className="nav-home">
-                <div className="nav-home-first">
+            <nav className="flex justify-around bg-gray-200 p-3 gap-60">
+                <div className="flex gap-5">
                     <p>logo</p>
-
-
+                    <h1>Placeholder</h1>
+                    {logged && <Link >Search</Link>}
                 </div>
-                <div className="nav-home-second">
-                    {logged && <Link to={"/dash"}>Dashboard</Link>}
-                    {!logged && <Link to="/auth">Login</Link>}
-                    {!logged && <Link to="/auth">Register</Link>}
-                    {logged && <Link onClick={handleLogout}>Logout</Link>}
+                <div className="flex gap-10">
+                    {logged && <>
+                        <Link to={"/dash"}>Feed</Link>
+                        <Link to={"#"}>Friends</Link>
+                        <Link to={"/#"}>Chats</Link>
+                        <Link to={"/#"}>Alerts</Link>
+                        <Link onClick={handleLogout}>Logout</Link>
+                    </>}
+
+                    {!logged && <>
+                        <Link to="/auth">Login</Link>
+                        <Link to="/auth">Register</Link>
+
+                    </>}
+
                 </div>
             </nav>
         </div>
