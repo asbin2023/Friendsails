@@ -11,7 +11,7 @@ function authM(req, res, next) {
 
     let payload = jwt.verify(token, process.env.SECRET);
     if (payload.error) {
-      return res.send(403).json({ error: payload.error });
+      return res.status(403).json({ error: payload.error });
     }
     req.id = payload.id;
     req.username = payload.username;

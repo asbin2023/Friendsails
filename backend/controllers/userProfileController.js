@@ -4,11 +4,14 @@ module.exports.getProfile = async (req, res) => {
   try {
     const { id, username } = req;
     const { usernameParam } = req.params;
+    console.log(id, username, usernameParam);
     if (!id || !username || !usernameParam) {
       return res.status(404).json({ message: "not authorized" });
     }
-    const userProfile = await UserProfile.findOne({ username: usernameParam });
-    res.send(200).json({ userProfile });
+    const userProfile = await UserProfile.findOne({
+      username: usernameParam,
+    }).populate("user", "email");
+    res.status(200).json({ userProfile });
   } catch (err) {
     console.log(err.message);
   }
@@ -37,11 +40,30 @@ module.exports.postProfile = async (req, res) => {
       username,
       user,
     });
-    res.send(200).json({ userProfile });
+    res.status(200).json({ userProfile });
   } catch (err) {
     console.log(err.message);
   }
 };
 module.exports.updateProfile = async (req, res) => {
-  console.log("yo");
+  try {
+    const { id, username } = req;
+    console.log(req.body);
+
+    if (!id || !username) {
+      return res.status(404).json({
+        message: "not authorized / missing",
+      });
+    }
+
+    const userProfile = await UserProfile.findOneAndUpdate(
+      { user: id, username },
+      { ...req.body },
+      { new: true }
+    );
+    console.log(userProfile);
+    res.status(200).json({ userProfile });
+  } catch (err) {
+    console.log(err.message);
+  }
 };
