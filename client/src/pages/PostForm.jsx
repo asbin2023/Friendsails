@@ -1,10 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
 const PostForm = () => {
+    const navigate = useNavigate()
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     let token = localStorage.getItem('token')
@@ -26,6 +27,7 @@ const PostForm = () => {
                 }
             });
             console.log('im here')
+            navigate('/dash')
             //title. body, image is opt
         } catch (err) {
             console.log(err);
