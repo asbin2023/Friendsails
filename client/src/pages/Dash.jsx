@@ -1,8 +1,3 @@
-
-
-
-
-
 const Dash = () => {
     return (
         <div>

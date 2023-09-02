@@ -1,46 +1,40 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loggedIn } from "../redux/loggedSlice";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Dash from "./pages/Dash";
 import Notfound from "./pages/Notfound";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
+import PostForm from "./pages/PostForm";
 
-// command option i for inspect shortcut!
-
-// if (location != '/' || location != '/login' || location != '/signup' || location != '/dash') {
-//     navigate('/')
-// }
-
-const myPath = ['/', '/dash', '/auth']
+const myPath = ["/", "/dash", "/auth", "/new"];
 
 const App = () => {
-    const location = useLocation()
-    const logged = useSelector((state) => state.logged);
+    const location = useLocation();
     const token = localStorage.getItem("token");
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(loggedIn(token));
-    }, [logged]);
 
     return (
         <div>
-
             {myPath.includes(location.pathname) && <Home />}
             <Routes>
-                <Route path="/" element={logged ? <Dash /> : <Navigate to='/auth' />} />
-
+                <Route
+                    path="/"
+                    exact
+                    element={token ? <Dash /> : <Navigate to="/auth" />}
+                />
+                <Route
+                    path="/new"
+                    element={token ? <PostForm /> : <Navigate to="/auth" />}
+                />
                 <Route
                     path="/auth"
-                    element={!logged ? <Auth /> : <Navigate to="/dash" />}
+                    element={!token ? <Auth /> : <Navigate to="/dash" />}
                 />
                 <Route
                     path="/dash"
-                    element={logged ? <Dash /> : <Navigate to="/auth" />}
+                    element={token ? <Dash /> : <Navigate to="/auth" />}
                 />
-                {!myPath.includes(location.pathname) && <Route path="*" element={<Notfound />} />}
+                {!myPath.includes(location.pathname) && (
+                    <Route path="*" element={<Notfound />} />
+                )}
             </Routes>
         </div>
     );

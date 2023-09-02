@@ -1,7 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loggedIn } from "../../redux/loggedSlice";
+import { useState } from "react";
 import friends from "../images/friends.avif";
 import sign from '../images/sign.avif'
 
@@ -9,7 +7,7 @@ import sign from '../images/sign.avif'
 const regex = /[^A-Za-z0-9]+/g;
 
 const Auth = () => {
-    const dispatch = useDispatch();
+
     const [switchToggle, setSwitchToggle] = useState(false)
 
     function handleSwitchToggle() {
@@ -57,8 +55,9 @@ const Auth = () => {
             const data = response.data;
             localStorage.setItem("token", data.token);
             localStorage.setItem("username", data.username);
-            const token = localStorage.getItem("token");
-            dispatch(loggedIn(token));
+            window.location.reload(false);
+
+
         } catch (err) {
             console.log("error on signup");
             console.log(err.message);
@@ -90,8 +89,8 @@ const Auth = () => {
             let data = response.data;
             localStorage.setItem("username", data.username);
             localStorage.setItem("token", data.token);
-            let token = localStorage.getItem("token");
-            dispatch(loggedIn(token));
+            window.location.reload(false);
+
         } catch (err) {
             console.log("err on login submit");
             console.log(err.message);
