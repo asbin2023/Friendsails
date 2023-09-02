@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 
 
 const PostForm = () => {
@@ -72,9 +74,9 @@ const PostForm = () => {
                     <button className="bg-green-200 border-2 p-1" type="submit">
                         Post
                     </button>
-                    <button type="reset" className="bg-red-100 border-2 p-1 ">
+                    <Link to='/dash'> <button type="reset" className="bg-red-100 border-2 p-1 ">
                         Cancel
-                    </button>
+                    </button></Link>
                 </div>
             </form>
         </div>
