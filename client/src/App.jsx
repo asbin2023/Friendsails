@@ -17,8 +17,6 @@ const myPath = ['/', '/dash', '/auth']
 
 const App = () => {
     const location = useLocation()
-    console.log(location.pathname, 'thats hty epath name')
-    console.log(typeof location.pathname)
     const logged = useSelector((state) => state.logged);
     const token = localStorage.getItem("token");
     const dispatch = useDispatch();
