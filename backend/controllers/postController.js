@@ -7,6 +7,12 @@ module.exports.getPosts = async (req, res) => {
       return res.status(404).json("unauthorized");
     }
     const posts = await Post.find({ user: id }).populate("user", "username");
+    let postsCopy = [...posts];
+    console.log(postsCopy);
+    console.log("/////////");
+    const comments = await Comment.find({});
+    //just loop thry and creat e object to contrail both coreespongly
+    console.log(comments);
 
     res.status(200).json({ posts });
   } catch (err) {
@@ -32,8 +38,6 @@ module.exports.createPost = async (req, res) => {
 };
 
 module.exports.updatePost = async (req, res) => {
-  console.clear();
-  console.log(req.body);
   try {
     const { id, username } = req;
     const { postId } = req.params;
@@ -68,5 +72,19 @@ module.exports.deletePost = async (req, res) => {
   } catch (err) {
     console.log("error in deleting post in controlller");
     console.log(err.message);
+  }
+};
+
+module.exports.getSinglePost = async (req, res) => {
+  try {
+    const { id, username } = req;
+    const { postId } = req.params;
+    if (!id || !username || !postId) {
+      return res.status(404).json({ message: "missing cre" });
+    }
+    const post = await Post.findById(postId);
+    res.status(200).json({ post });
+  } catch (err) {
+    console.log(err);
   }
 };

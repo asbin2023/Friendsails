@@ -32,6 +32,9 @@ module.exports.postComment = async (req, res) => {
       return res.status(400).json({ message: "missing credentials" });
     }
     const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(200).json({ message: "post requiredß" });
+    }
 
     const comment = await Comment.create({ commentText, post });
 

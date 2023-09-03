@@ -3,9 +3,10 @@ import Dash from "./pages/Dash";
 import Notfound from "./pages/Notfound";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
-import PostForm from "./pages/PostForm";
+import PostForm from "./components/PostForm";
+import EditPost from "./components/EditPost";
 
-const myPath = ["/", "/dash", "/auth", "/new"];
+
 
 const App = () => {
     const location = useLocation();
@@ -13,7 +14,7 @@ const App = () => {
 
     return (
         <div>
-            {myPath.includes(location.pathname) && <Home />}
+            <Home />
             <Routes>
                 <Route
                     path="/"
@@ -32,9 +33,10 @@ const App = () => {
                     path="/dash"
                     element={token ? <Dash /> : <Navigate to="/auth" />}
                 />
-                {!myPath.includes(location.pathname) && (
-                    <Route path="*" element={<Notfound />} />
-                )}
+                <Route path="/post/edit/:postId" element={token ? <EditPost /> : <Navigate to='/auth' />} />
+
+                <Route path="*" element={<Notfound />} />
+
             </Routes>
         </div>
     );

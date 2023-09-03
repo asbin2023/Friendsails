@@ -19,11 +19,14 @@ const ShowPosts = () => {
             console.log(err);
         }
     }
-    console.log(posts);
 
     useEffect(() => {
         getPosts();
     }, []);
+
+    function sendToEdit(id) {
+        navigate(`/post/edit/${id}`);
+    }
 
     async function deletePost(postId) {
         let token = localStorage.getItem("token");
@@ -53,23 +56,29 @@ const ShowPosts = () => {
                         <div className="p-2" key={item._id}>
                             <div className="flex w-2/5 justify-between">
                                 <h1 className="font-bold">{item.title}</h1>
-                                <button
-                                    onClick={() => deletePost(item._id)}
-                                    className="bg-red-200 p-1 text-white"
-                                >
-                                    Delete
-                                </button>
+                                <div className="flex">
+                                    <button
+                                        onClick={() => deletePost(item._id)}
+                                        className="bg-red-200 p-1 text-white"
+                                    >
+                                        Delete
+                                    </button>
+                                    <button
+                                        onClick={() => sendToEdit(item._id)}
+                                        className=" ml-1 p-1 text-white bg-blue-500"
+                                    >
+                                        Edit
+                                    </button>
+                                </div>
                             </div>
                             {item.image && (
                                 <img className="p-2" src={item.image} width={400} />
                             )}
                             <p>{item.body}</p>
-                            <h1 className=" underline underline-offset-4">
-                                posted by: {item.user.username}:
+                            <h1 className=" border-2 p-1">
+                                posted by: {item.user.username}     on {newTime} at {newData}
                             </h1>
-                            <p>
-                                created on {newTime} at {newData}
-                            </p>
+
                         </div>
                     );
                 })}
