@@ -63,12 +63,17 @@ module.exports.deleteComment = async (req, res) => {
     if (!id || !username || !postId || !commentId) {
       return res.status(400).json({ message: "missing credentials" });
     }
+    console.log("this is the username", username);
 
-    await Comment.findOneAndDelete({
+    let deletedComment = await Comment.findOneAndDelete({
       _id: commentId,
       post: postId,
       user: username,
     });
+    console.log("dis th deleted c", deletedComment);
+    if (!deletedComment) {
+      res.status(400).json({ message: "user wrong" });
+    }
 
     res.status(200).json({ message: "deleted comment" });
   } catch (err) {
@@ -88,10 +93,14 @@ module.exports.updateComment = async (req, res) => {
       return res.status(404).json({ message: "unauthorized" });
     }
     const comment = await Comment.findOneAndUpdate(
-      { _id: commentId, post: postId },
+      { _id: commentId, post: postId, user: username },
       { commentText },
       { new: true }
     );
+    console.log("dios the commnet", comment);
+    if (!comment) {
+      return res.status(400).json({ message: "wring user. not allowed" });
+    }
     res.status(200).json({ comment });
   } catch (err) {
     console.log(err.message);

@@ -45,11 +45,17 @@ module.exports.updatePost = async (req, res) => {
       return res.status(403).json({ message: "unauthorized" });
     }
 
-    const post = await Post.updateOne(
+    const post = await Post.findOneAndUpdate(
       { _id: postId, user: id },
-      { title, body, image }
+      { title, body, image },
+      { new: true }
     );
-    console.log(post);
+    if (!post) {
+      return res.status(404).json({
+        msg: "not authorized",
+      });
+    }
+    console.log(post, "da post in updatePost");
     res.status(200).json({ post });
   } catch (err) {
     console.log("error in the updatePost controller");
