@@ -19,6 +19,22 @@ module.exports.getComments = async (req, res) => {
     console.log(err.message);
   }
 };
+// /user/posts/comments/singleComment/:commentId
+
+module.exports.getSingleComment = async (req, res) => {
+  console.log("hi");
+  try {
+    const { id, username } = req;
+    const { commentId } = req.params;
+    if (!id || !username || !commentId) {
+      return res.status(400).json({ msg: "not allowerd" });
+    }
+    const comment = await Comment.findOne({ _id: commentId });
+    res.status(200).json({ comment });
+  } catch (err) {
+    res.status(404).json({ err });
+  }
+};
 
 // commentText
 

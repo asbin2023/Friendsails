@@ -78,7 +78,7 @@ const ShowPosts = () => {
                             <h2>comments</h2>
                             <ul>
                                 {item.comments.length > 0 ? item.comments.map((comment) => {
-                                    return <div key={comment._id}>
+                                    return <div className="bg-blue-100 text-green-600" key={comment._id}>
                                         {comment.commentText} by {comment.user}
                                     </div>
                                 }) : <p>0 Comments</p>}
