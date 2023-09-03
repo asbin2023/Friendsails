@@ -27,7 +27,13 @@ module.exports.createPost = async (req, res) => {
       return res.status(404).json("unauthorized");
     }
     const user = await User.findOne({ _id: id, username });
-    const post = await Post.create({ title, body, image, user });
+    const post = await Post.create({
+      title,
+      body,
+      image,
+      user,
+      author: username,
+    });
 
     return res.status(200).json({ post });
   } catch (err) {

@@ -84,7 +84,7 @@ const ShowPosts = () => {
                                 }) : <p>0 Comments</p>}
                             </ul>
                             <h1 className=" border-2 p-1">
-                                posted by: {item.user.username}     on {newTime} at {newData}
+                                posted by: {item.author}     on {newTime} at {newData}
                             </h1>
 
                         </div>
