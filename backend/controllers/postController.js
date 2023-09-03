@@ -6,13 +6,12 @@ module.exports.getPosts = async (req, res) => {
     if (!id || !username) {
       return res.status(404).json("unauthorized");
     }
-    const posts = await Post.find({ user: id }).populate("user", "username");
-    let postsCopy = [...posts];
-    console.log(postsCopy);
+    const posts = await Post.find({ user: id }).populate(
+      "comments",
+      "commentText createdAt user"
+    );
+
     console.log("/////////");
-    const comments = await Comment.find({});
-    //just loop thry and creat e object to contrail both coreespongly
-    console.log(comments);
 
     res.status(200).json({ posts });
   } catch (err) {
@@ -50,6 +49,7 @@ module.exports.updatePost = async (req, res) => {
       { _id: postId, user: id },
       { title, body, image }
     );
+    console.log(post);
     res.status(200).json({ post });
   } catch (err) {
     console.log("error in the updatePost controller");
@@ -65,10 +65,17 @@ module.exports.deletePost = async (req, res) => {
       return res.status(403).json({ message: "unauthorized" });
     }
 
-    await Post.findByIdAndDelete(postId);
-    await Comment.findOneAndDelete({ post: postId });
+    const deletedPost = await Post.findOneAndDelete({ _id: postId, user: id });
+    console.log("this da dleted pst", deletedPost);
+    if (deletedPost) {
+      await Comment.findOneAndDelete({ post: postId });
+    } else {
+      return res.status(404).json({
+        message: "not allowed ",
+      });
+    }
 
-    res.status(200).json({ message: "successfully deleted the user" });
+    res.status(200).json({ message: "successfully deleted the post" });
   } catch (err) {
     console.log("error in deleting post in controlller");
     console.log(err.message);
@@ -82,7 +89,10 @@ module.exports.getSinglePost = async (req, res) => {
     if (!id || !username || !postId) {
       return res.status(404).json({ message: "missing cre" });
     }
-    const post = await Post.findById(postId);
+    const post = await Post.findById(postId).populate(
+      "comments",
+      "createdAt commentText user"
+    );
     res.status(200).json({ post });
   } catch (err) {
     console.log(err);

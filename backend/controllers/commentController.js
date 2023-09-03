@@ -11,7 +11,7 @@ module.exports.getComments = async (req, res) => {
     }
     const comments = await Comment.find({ post: postId }).populate(
       "post",
-      "title body user"
+      "title body createdAt"
     );
     res.status(200).json({ comments });
   } catch (err) {
@@ -31,12 +31,22 @@ module.exports.postComment = async (req, res) => {
     if (!id || !username || !postId || !commentText) {
       return res.status(400).json({ message: "missing credentials" });
     }
-    const post = await Post.findById(postId);
+    const post = await Post.findOne({ _id: postId });
+    console.log(post);
     if (!post) {
-      return res.status(200).json({ message: "post requiredß" });
+      return res.status(400).json({ message: "post required" });
     }
 
-    const comment = await Comment.create({ commentText, post });
+    const comment = await Comment.create({
+      commentText,
+      post,
+      user: username,
+    });
+    await Post.findByIdAndUpdate(postId, {
+      $push: {
+        comments: comment,
+      },
+    });
 
     res.status(200).json({ comment });
   } catch (err) {
@@ -54,7 +64,11 @@ module.exports.deleteComment = async (req, res) => {
       return res.status(400).json({ message: "missing credentials" });
     }
 
-    await Comment.findByIdAndDelete(commentId);
+    await Comment.findOneAndDelete({
+      _id: commentId,
+      post: postId,
+      user: username,
+    });
 
     res.status(200).json({ message: "deleted comment" });
   } catch (err) {

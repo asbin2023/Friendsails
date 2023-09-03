@@ -11,6 +11,10 @@ const commentSchema = new Schema(
     reactions: {
       type: String,
     },
+    user: {
+      type: String,
+      required: true,
+    },
     post: {
       type: Schema.Types.ObjectId,
       ref: "Post",
@@ -39,6 +43,10 @@ const postSchema = new Schema(
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
+    },
+    comments: {
+      type: [Schema.Types.ObjectId],
+      ref: "Comment",
     },
   },
   { timestamps: true }

@@ -19,7 +19,7 @@ const ShowPosts = () => {
             console.log(err);
         }
     }
-
+    console.log(posts)
     useEffect(() => {
         getPosts();
     }, []);
@@ -74,7 +74,15 @@ const ShowPosts = () => {
                             {item.image && (
                                 <img className="p-2" src={item.image} width={400} />
                             )}
-                            <p>{item.body}</p>
+                            <p className="p-2 border-4 border-red-300">{item.body}</p>
+                            <h2>comments</h2>
+                            <ul>
+                                {item.comments.length > 0 ? item.comments.map((comment) => {
+                                    return <div key={comment._id}>
+                                        {comment.commentText} by {comment.user}
+                                    </div>
+                                }) : <p>0 Comments</p>}
+                            </ul>
                             <h1 className=" border-2 p-1">
                                 posted by: {item.user.username}     on {newTime} at {newData}
                             </h1>
