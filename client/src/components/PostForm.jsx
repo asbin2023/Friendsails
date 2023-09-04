@@ -56,7 +56,7 @@ const PostForm = () => {
                 />
                 <label htmlFor="body">Post body content:</label>
                 <textarea
-                    className="border-2 border-black outline-none"
+                    className="border-2 border-black outline-none resize-none"
                     id="body"
                     cols="20"
                     required

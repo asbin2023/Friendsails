@@ -5,8 +5,8 @@ import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import PostForm from "./components/PostForm";
 import EditPost from "./components/EditPost";
-
-
+import EditComment from "./components/EditComment";
+import AddComment from "./components/AddComment";
 
 const App = () => {
     const location = useLocation();
@@ -33,10 +33,21 @@ const App = () => {
                     path="/dash"
                     element={token ? <Dash /> : <Navigate to="/auth" />}
                 />
-                <Route path="/post/edit/:postId" element={token ? <EditPost /> : <Navigate to='/auth' />} />
+                <Route
+                    path="/post/edit/:postId"
+                    element={token ? <EditPost /> : <Navigate to="/auth" />}
+                />
+
+                <Route
+                    path="/addComment/:postId"
+                    element={token ? <AddComment /> : <Navigate to="auth" />}
+                />
+                <Route
+                    path="/editComment/:postId"
+                    element={token ? <EditComment /> : <Navigate to="auth" />}
+                />
 
                 <Route path="*" element={<Notfound />} />
-
             </Routes>
         </div>
     );
