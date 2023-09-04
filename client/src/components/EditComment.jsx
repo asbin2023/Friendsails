@@ -16,7 +16,12 @@ const EditComment = () => {
 
     async function handleEditComment(e) {
         e.preventDefault()
+        if (comment.commentText === input) {
+            console.log('gitcha')
+            return navigate(-1)
+        }
         try {
+            console.log('uo')
             const editedComment = await axios.put(`/api/user/posts/comments/${postId}/${commentId}`, { commentText: input }, {
                 headers: {
                     Authorization: localStorage.getItem('token')

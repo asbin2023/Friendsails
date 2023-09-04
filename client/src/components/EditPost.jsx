@@ -30,7 +30,12 @@ const EditPost = () => {
     }
     async function handleFormSubmit(e) {
         e.preventDefault();
+        if (title === post.title && body === post.body && image === post.image) {
+            console.log('good')
+            return navigate('/dash')
+        }
         try {
+            console.log('made it')
             let data = {
                 title,
                 body,
@@ -42,7 +47,7 @@ const EditPost = () => {
                 },
             });
 
-            console.log("im here");
+
             navigate("/dash");
             //title. body, image is opt
         } catch (err) {

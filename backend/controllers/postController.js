@@ -8,7 +8,7 @@ module.exports.getPosts = async (req, res) => {
     }
     const posts = await Post.find({ user: id }).populate(
       "comments",
-      "commentText createdAt user"
+      "commentText createdAt user edited"
     );
 
     console.log("/////////");
@@ -53,7 +53,7 @@ module.exports.updatePost = async (req, res) => {
 
     const post = await Post.findOneAndUpdate(
       { _id: postId, user: id },
-      { title, body, image },
+      { title, body, image, edited: true },
       { new: true }
     );
     if (!post) {
@@ -103,7 +103,7 @@ module.exports.getSinglePost = async (req, res) => {
     }
     const post = await Post.findById(postId).populate(
       "comments",
-      "createdAt commentText user"
+      "createdAt commentText user edited"
     );
     res.status(200).json({ post });
   } catch (err) {

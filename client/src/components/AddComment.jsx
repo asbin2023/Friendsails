@@ -46,14 +46,13 @@ const AddComment = () => {
     }
     async function handleCommentDelete(id) {
         try {
-            console.log(id)
-            console.log(postId)
+
             let x = await axios.delete(`/api/user/posts/comments/${postId}/${id}`, {
                 headers: {
                     Authorization: token
                 }
             })
-            console.log(x)
+
             navigate(0)
         } catch (err) {
             console.log(err)
@@ -105,7 +104,8 @@ const AddComment = () => {
                                         <h1 className="text-lg">
                                             {" "}
                                             <span className="font-bold text-xl">
-                                                {comment.commentText}{" "}
+
+                                                {comment.commentText} {comment.edited && '(edited)'}
                                             </span>
                                             by {comment.user === localStorage.getItem('username') ? 'You' : comment.user}
                                         </h1>

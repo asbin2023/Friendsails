@@ -11,7 +11,7 @@ module.exports.getComments = async (req, res) => {
     }
     const comments = await Comment.find({ post: postId }).populate(
       "post",
-      "title body createdAt"
+      "title body createdAt edited"
     );
     res.status(200).json({ comments });
   } catch (err) {
@@ -31,6 +31,7 @@ module.exports.getSingleComment = async (req, res) => {
     }
     const comment = await Comment.findOne({ _id: commentId });
     res.status(200).json({ comment });
+    console.log("commnet ///", comment);
   } catch (err) {
     res.status(404).json({ err });
   }
@@ -109,7 +110,7 @@ module.exports.updateComment = async (req, res) => {
     }
     const comment = await Comment.findOneAndUpdate(
       { _id: commentId, post: postId, user: username },
-      { commentText },
+      { commentText, edited: true },
       { new: true }
     );
     console.log("dios the commnet", comment);

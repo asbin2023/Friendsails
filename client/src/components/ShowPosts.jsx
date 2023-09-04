@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const ShowPosts = () => {
     const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
-
+    console.log(posts)
     async function getPosts() {
         let token = localStorage.getItem("token");
         try {
@@ -64,7 +64,7 @@ const ShowPosts = () => {
                             key={item._id}
                         >
                             <div className="flex w-2/5 justify-between">
-                                <h1 className="font-bold">{item.title}</h1>
+                                <h1 className="font-bold">{item.title} <span>{item.edited && '(edited)'}</span></h1>
                                 <div className="flex">
                                     <button
                                         onClick={(e) => deletePost(item._id, e)}

@@ -19,6 +19,10 @@ const commentSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Post",
     },
+    edited: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   { timestamps: true }
@@ -51,6 +55,10 @@ const postSchema = new Schema(
     comments: {
       type: [Schema.Types.ObjectId],
       ref: "Comment",
+    },
+    edited: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }
