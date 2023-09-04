@@ -99,7 +99,6 @@ module.exports.deleteComment = async (req, res) => {
 };
 
 module.exports.updateComment = async (req, res) => {
-  console.log("hey");
   try {
     const { id, username } = req;
     const { commentText } = req.body;

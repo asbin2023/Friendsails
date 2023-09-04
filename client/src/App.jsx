@@ -43,7 +43,7 @@ const App = () => {
                     element={token ? <AddComment /> : <Navigate to="auth" />}
                 />
                 <Route
-                    path="/editComment/:postId"
+                    path="/editComment/:postId/:commentId"
                     element={token ? <EditComment /> : <Navigate to="auth" />}
                 />
 

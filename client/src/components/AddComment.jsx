@@ -59,6 +59,11 @@ const AddComment = () => {
             console.log(err)
         }
     }
+    // "/editComment/:postId/:commentId"
+    function handleCommentEdit(id) {
+        navigate(`/editComment/${postId}/${id}`)
+
+    }
 
 
     return post ? (
@@ -105,6 +110,7 @@ const AddComment = () => {
                                             by {comment.user === localStorage.getItem('username') ? 'You' : comment.user}
                                         </h1>
                                         <button onClick={() => handleCommentDelete(comment._id)} className="p-1 m-1 bg-red-200 text-yellow-700">Delete</button>
+                                        <button onClick={() => handleCommentEdit(comment._id)} className="p-1 m-1 bg-blue-500 text-white">Edit</button>
                                     </div>
                                     <h3 className="p-1 bg-yellow-100 w-5/12">
                                         posted at{" "}
