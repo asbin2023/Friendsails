@@ -9,7 +9,7 @@ const PostForm = () => {
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     let token = localStorage.getItem('token')
-    console.log(token)
+
 
     const [image, setImage] = useState("");
 

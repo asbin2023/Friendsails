@@ -8,6 +8,10 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 const AddComment = () => {
     const { postId } = useParams();
+    // let username = localStorage.getItem('username')
+    let token = localStorage.getItem('token')
+
+    const navigate = useNavigate()
     const [post, setPost] = useState("");
     const [input, setInput] = useState("");
 
@@ -27,7 +31,12 @@ const AddComment = () => {
     async function handleCommentSubmit(e) {
         e.preventDefault()
         try {
-            const addedComment = axios.get()
+            const addedComment = await axios.post(`/api/user/posts/comments/${postId}`, { commentText: input }, {
+                headers: {
+                    Authorization: token
+                }
+            })
+            navigate(0)
         } catch (err) {
             console.log(err)
         }
@@ -35,7 +44,8 @@ const AddComment = () => {
 
 
     return post ? (
-        <div className="p-2">
+        <div className="p-14">
+            <button onClick={() => navigate(-1)} className="font-bold p-2 mb-5 text-white bg-green-500">back to feed</button>
             <div>
                 <h1 className="font-bold">{post.title}</h1>
                 <h2>{post.body}</h2>
@@ -73,7 +83,7 @@ const AddComment = () => {
                                         <span className="font-bold text-xl">
                                             {comment.commentText}{" "}
                                         </span>
-                                        by {comment.user}
+                                        by {comment.user === localStorage.getItem('username') ? 'You' : comment.user}
                                     </h1>
                                     <h3 className="p-1 bg-yellow-100 w-5/12">
                                         posted at{" "}

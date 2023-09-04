@@ -19,16 +19,18 @@ const ShowPosts = () => {
             console.log(err);
         }
     }
-    console.log(posts)
+
     useEffect(() => {
         getPosts();
     }, []);
 
-    function sendToEdit(id) {
+    function sendToEdit(id, e) {
+        e.stopPropagation();
         navigate(`/post/edit/${id}`);
     }
 
-    async function deletePost(postId) {
+    async function deletePost(postId, e) {
+        e.stopPropagation();
         let token = localStorage.getItem("token");
         try {
             await axios.delete(`/api/user/posts/${postId}`, {
@@ -41,10 +43,13 @@ const ShowPosts = () => {
             console.log(err);
         }
     }
+    function toEdit(id) {
+        navigate(`/addComment/${id}`);
+    }
 
     return posts.length > 0 ? (
         <div>
-            <div className="p-20 pt-10">
+            <div className=" p-10 pt-10">
                 {posts.map((item) => {
                     const createdAt = new Date(item.createdAt);
                     const newData = createdAt.toLocaleDateString();
@@ -53,18 +58,22 @@ const ShowPosts = () => {
                         minute: "2-digit",
                     });
                     return (
-                        <div className="p-2" key={item._id}>
+                        <div
+                            className="border-2 mt-7 p-2 cursor-pointer bg-slate-100"
+                            onClick={() => toEdit(item._id)}
+                            key={item._id}
+                        >
                             <div className="flex w-2/5 justify-between">
                                 <h1 className="font-bold">{item.title}</h1>
                                 <div className="flex">
                                     <button
-                                        onClick={() => deletePost(item._id)}
+                                        onClick={(e) => deletePost(item._id, e)}
                                         className="bg-red-200 p-1 text-white"
                                     >
                                         Delete
                                     </button>
                                     <button
-                                        onClick={() => sendToEdit(item._id)}
+                                        onClick={(e) => sendToEdit(item._id, e)}
                                         className=" ml-1 p-1 text-white bg-blue-500"
                                     >
                                         Edit
@@ -74,19 +83,12 @@ const ShowPosts = () => {
                             {item.image && (
                                 <img className="p-2" src={item.image} width={400} />
                             )}
-                            <p className="p-2 border-4 border-red-300">{item.body}</p>
-                            <h2>comments</h2>
-                            <ul>
-                                {item.comments.length > 0 ? item.comments.map((comment) => {
-                                    return <div className="bg-blue-100 text-green-600" key={comment._id}>
-                                        {comment.commentText} by {comment.user}
-                                    </div>
-                                }) : <p>0 Comments</p>}
-                            </ul>
-                            <h1 className=" border-2 p-1">
-                                posted by: {item.author}     on {newTime} at {newData}
-                            </h1>
+                            <p className="p-2">{item.body}</p>
+                            <p>{item.comments.length} Comments</p>
 
+                            <h1 className=" border-2 p-1 bg-orange-200">
+                                posted by: {item.author === localStorage.getItem('username') ? 'You' : item.author} on {newTime} at {newData}
+                            </h1>
                         </div>
                     );
                 })}
