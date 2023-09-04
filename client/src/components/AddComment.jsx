@@ -6,6 +6,9 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 // api/user/posts/comments/:postId
 
+// delete comment
+// api/user/posts/comments/:postId/:commentId"
+
 const AddComment = () => {
     const { postId } = useParams();
     // let username = localStorage.getItem('username')
@@ -31,11 +34,26 @@ const AddComment = () => {
     async function handleCommentSubmit(e) {
         e.preventDefault()
         try {
-            const addedComment = await axios.post(`/api/user/posts/comments/${postId}`, { commentText: input }, {
+            await axios.post(`/api/user/posts/comments/${postId}`, { commentText: input }, {
                 headers: {
                     Authorization: token
                 }
             })
+            navigate(0)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    async function handleCommentDelete(id) {
+        try {
+            console.log(id)
+            console.log(postId)
+            let x = await axios.delete(`/api/user/posts/comments/${postId}/${id}`, {
+                headers: {
+                    Authorization: token
+                }
+            })
+            console.log(x)
             navigate(0)
         } catch (err) {
             console.log(err)
@@ -78,13 +96,16 @@ const AddComment = () => {
                         post.comments.map((comment) => {
                             return (
                                 <div className="m-4" key={comment._id}>
-                                    <h1 className="text-lg">
-                                        {" "}
-                                        <span className="font-bold text-xl">
-                                            {comment.commentText}{" "}
-                                        </span>
-                                        by {comment.user === localStorage.getItem('username') ? 'You' : comment.user}
-                                    </h1>
+                                    <div className="flex gap-10 items-center">
+                                        <h1 className="text-lg">
+                                            {" "}
+                                            <span className="font-bold text-xl">
+                                                {comment.commentText}{" "}
+                                            </span>
+                                            by {comment.user === localStorage.getItem('username') ? 'You' : comment.user}
+                                        </h1>
+                                        <button onClick={() => handleCommentDelete(comment._id)} className="p-1 m-1 bg-red-200 text-yellow-700">Delete</button>
+                                    </div>
                                     <h3 className="p-1 bg-yellow-100 w-5/12">
                                         posted at{" "}
                                         {new Date(comment.createdAt).toLocaleTimeString([], {
