@@ -19,6 +19,7 @@ module.exports.getProfile = async (req, res) => {
 module.exports.postProfile = async (req, res) => {
   try {
     const { id, username } = req;
+    console.log(req.body);
     const { picture, background, name, about, location, link } = req.body;
     if (
       !id ||

@@ -25,7 +25,7 @@ const Home = () => {
                             <Link to={"/dash"}>Feed</Link>
                             <Link to={"/friends"}>Friends</Link>
                             <Link to={"/#"}>Chats</Link>
-                            <Link to={"/#"}>Alerts</Link>
+                            <Link to={"/profile"}>Profile</Link>
                             <Link onClick={handleLogout}>Logout</Link>
                         </>
                     )}
