@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 const ShowPosts = () => {
     const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
-    console.log(posts)
+
     async function getPosts() {
         let token = localStorage.getItem("token");
         try {

@@ -87,3 +87,18 @@ module.exports.search = async (req, res) => {
     console.log(err);
   }
 };
+
+module.exports.getAllUsers = async (req, res) => {
+  try {
+    const { id, username } = req;
+    if (!id || !username) {
+      return res.status(404).json({ msg: "not allowed" });
+    }
+    const users = await User.find();
+    console.log(users);
+    res.status(200).json({ users: users });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ err });
+  }
+};
