@@ -18,6 +18,27 @@ module.exports.getPosts = async (req, res) => {
     console.log(err.message);
   }
 };
+module.exports.getGeneralPosts = async (req, res) => {
+  try {
+    let { id, username } = req;
+    let { author } = req.params;
+    if (!id || !username || !author) {
+      return res.status(404).json("unauthorized");
+    }
+    const posts = await Post.find({ author }).populate(
+      "comments",
+      "commentText createdAt user edited"
+    );
+    console.log(posts.length);
+    if (posts.length < 1) {
+      return res.status(400).json({ err: "author doesnt exist" });
+    }
+
+    res.status(200).json({ posts });
+  } catch (err) {
+    console.log(err.message);
+  }
+};
 
 module.exports.createPost = async (req, res) => {
   try {

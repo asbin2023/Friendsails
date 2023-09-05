@@ -1,16 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ShowPosts from "../components/ShowPosts";
+import ProfileNew from "./ProfileNew";
+
 
 const Profile = () => {
     const [profile, setProfile] = useState("");
-
-    const [picture, setPicture] = useState("");
-    const [background, setBackground] = useState("");
-    const [name, setName] = useState("");
-    const [about, setAbout] = useState("");
-    const [location, setLocation] = useState("");
-    const [link, setLink] = useState("");
+    const [toggle, setToggle] = useState(false)
 
     useEffect(() => {
         async function getProfile() {
@@ -31,98 +28,32 @@ const Profile = () => {
         getProfile();
     }, []);
 
-    async function handleProfileSubmit(e) {
-        e.preventDefault()
-        try {
-            console.log('do this next')
-        } catch (err) {
-            console.log(err.message)
-        }
-    }
-
-    function handlePictureChange(e) {
-        const file = e.target.files[0];
-        const render = new FileReader();
-        render.onloadend = () => setPicture(render.result);
-        render.readAsDataURL(file);
-    }
-    function handleBackgroundChange(e) {
-        const file = e.target.files[0];
-        const render = new FileReader();
-        render.onloadend = () => setBackground(render.result);
-        render.readAsDataURL(file);
-    }
     return !profile ? (
-        <div className="p-10">
-            <h1>
-                Looks like your profile is empty. Lets set that up for you real quick!
-            </h1>
-            <div>
-                <form onSubmit={handleProfileSubmit} className="flex m-3 flex-col gap-3">
-                    <label htmlFor="name">your name:</label>
-                    <input
-                        className="p-1 bg-slate-100 outline-none border-1"
-                        type="text"
-                        id="name"
-                        value={name}
-                        required
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    <label htmlFor="location">your location:</label>
-                    <input
-                        className="p-1 bg-slate-100 outline-none border-1"
-                        type="text"
-                        id="location"
-                        value={location}
-                        required
-                        onChange={(e) => setLocation(e.target.value)}
-                    />
-                    <label htmlFor="link">your link:</label>
-                    <input
-                        className="p-1 bg-slate-100 outline-none border-1"
-                        type="text"
-                        id="link"
-                        value={link}
-                        required
-                        onChange={(e) => setLink(e.target.value)}
-                    />
-                    <label htmlFor="about">your about me:</label>
-                    <textarea
-                        rows={3}
-                        className="p-1 bg-slate-100 outline-none border-1 resize-none"
-                        type="text"
-                        id="about"
-                        value={about}
-                        required
-                        onChange={(e) => setAbout(e.target.value)}
-                    />
-                    <label htmlFor="picture">Include your profile pic</label>
-                    <input
-                        required
-                        type="file"
-                        id="picture"
-                        accept="image/*"
-                        onChange={handlePictureChange}
-                    />
-                    <label htmlFor="background">Include your background pic</label>
-                    <input
-                        required
-                        type="file"
-                        id="background"
-                        accept="image/*"
-                        onChange={handleBackgroundChange}
-                    />
-                    <div className="flex justify-evenly">
+        <div>
+            <p>
 
-                        <button type="submit" className="p-1.5 bg-blue-600 text-white">Submit</button>
-                        <button type="reset" className="p-1.5 bg-red-200 text-white">Clear</button>
-                    </div>
-                </form>
+                Looks like your profile is empty. Click here to set up your profile.
+            </p>
+            <button className="p-2 bg-purple-300 text-white" onClick={() => setToggle(!toggle)}>Setup</button>
+            <div className={!toggle && 'hidden'}>
+
+                <ProfileNew />
             </div>
         </div>
     ) : (
         <div>
-            <h1>this is ur profile just need to map ti xs </h1>
+            <div className="p-20 m-10">
+                <h1>Name: {profile.name}</h1>
+                <img src={profile.picture} width={50} alt="" />
+                <img src={profile.background} width={100} alt="" />
+                <h2>Location: {profile.location}</h2>
+                <a href={profile.link}>Link</a>
+                <h1>About: {profile.about}</h1>
+            </div>
+            <div className="p-20">
+                <h1> Your posts:</h1>
+                <ShowPosts />
+            </div>
         </div>
     );
 };

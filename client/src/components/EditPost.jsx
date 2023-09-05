@@ -32,7 +32,7 @@ const EditPost = () => {
         e.preventDefault();
         if (title === post.title && body === post.body && image === post.image) {
             console.log('good')
-            return navigate('/dash')
+            return navigate(-1)
         }
         try {
             console.log('made it')
@@ -48,7 +48,7 @@ const EditPost = () => {
             });
 
 
-            navigate("/dash");
+            navigate(-1);
             //title. body, image is opt
         } catch (err) {
             console.log(err);
@@ -102,12 +102,12 @@ const EditPost = () => {
                         <button className="bg-green-200 border-2 p-1" type="submit">
                             Save
                         </button>
-                        <Link to="/dash">
-                            {" "}
-                            <button type="reset" className="bg-red-100 border-2 p-1 ">
-                                Cancel
-                            </button>
-                        </Link>
+
+
+                        <button type="reset" onClick={() => navigate(-1)} className="bg-red-100 border-2 p-1 ">
+                            Cancel
+                        </button>
+
                     </div>
                 </form>
             </div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ShowPosts = () => {
     const [posts, setPosts] = useState([]);
@@ -95,7 +95,10 @@ const ShowPosts = () => {
             </div>
         </div>
     ) : (
-        <p className="p-3">You currently have no posts!</p>
+        <div className="p-3">
+            <p>You currently have no posts!</p>
+
+        </div>
     );
 };
 

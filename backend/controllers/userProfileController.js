@@ -36,6 +36,9 @@ module.exports.postProfile = async (req, res) => {
       });
     }
     const user = await User.findOne({ _id: id, username });
+    if (!user) {
+      return res.status(404).json({ err: "not allowed" });
+    }
     const userProfile = await UserProfile.create({
       ...req.body,
       username,

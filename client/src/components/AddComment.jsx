@@ -67,7 +67,7 @@ const AddComment = () => {
 
     return post ? (
         <div className="p-14">
-            <button onClick={() => navigate(-1)} className="font-bold p-2 mb-5 text-white bg-green-500">back to feed</button>
+            <button onClick={() => navigate(-1)} className="font-bold p-2 mb-5 text-white bg-green-500">back</button>
             <div>
                 <h1 className="font-bold">{post.title}</h1>
                 <h2>{post.body}</h2>
