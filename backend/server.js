@@ -6,6 +6,8 @@ const authM = require("./middlewares/authM");
 const express = require("express");
 
 const connectMongo = require("./mongoConfig");
+const { Post } = require("./models/allModels");
+const { User } = require("./models/allModels");
 
 connectMongo();
 

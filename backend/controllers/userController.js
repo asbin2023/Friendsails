@@ -70,3 +70,20 @@ module.exports.login = async (req, res) => {
 
 //later on add packages to verify email && check password
 //generate  a token & store it in a cookkie
+
+module.exports.search = async (req, res) => {
+  try {
+    console.log("in here");
+    const { id, username } = req;
+    const { searchUsername } = req.params;
+    console.log(id, username, searchUsername);
+    if (!username || !id || !searchUsername)
+      return res.status(400).json("token issue");
+
+    const foundUser = await User.findOne({ username: searchUsername });
+    console.log(foundUser);
+    res.status(200).json({ user: foundUser });
+  } catch (err) {
+    console.log(err);
+  }
+};

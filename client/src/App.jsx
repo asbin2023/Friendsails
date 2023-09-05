@@ -7,6 +7,7 @@ import PostForm from "./components/PostForm";
 import EditPost from "./components/EditPost";
 import EditComment from "./components/EditComment";
 import AddComment from "./components/AddComment";
+import Search from "./pages/Search";
 
 const App = () => {
     const location = useLocation();
@@ -45,6 +46,9 @@ const App = () => {
                 <Route
                     path="/editComment/:postId/:commentId"
                     element={token ? <EditComment /> : <Navigate to="auth" />}
+                />   <Route
+                    path="/search"
+                    element={token ? <Search /> : <Navigate to="auth" />}
                 />
 
                 <Route path="*" element={<Notfound />} />
