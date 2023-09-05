@@ -10,9 +10,11 @@ import AddComment from "./components/AddComment";
 import Search from "./pages/Search";
 import Friends from "./pages/Friends";
 import Profile from "./pages/Profile";
+import OtherProfiles from "./pages/OtherProfiles";
+import FriendPosts from "./components/FriendPosts";
 
 const App = () => {
-    const location = useLocation();
+
     const token = localStorage.getItem("token");
 
     return (
@@ -59,6 +61,14 @@ const App = () => {
                 <Route
                     path="/profile"
                     element={token ? <Profile /> : <Navigate to="auth" />}
+                />
+                <Route
+                    path="/profile/:username"
+                    element={token ? <OtherProfiles /> : <Navigate to="auth" />}
+                />
+                <Route
+                    path="/friendPost/:postId"
+                    element={token ? <FriendPosts /> : <Navigate to="auth" />}
                 />
 
                 <Route path="*" element={<Notfound />} />
