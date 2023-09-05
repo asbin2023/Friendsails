@@ -8,6 +8,7 @@ import EditPost from "./components/EditPost";
 import EditComment from "./components/EditComment";
 import AddComment from "./components/AddComment";
 import Search from "./pages/Search";
+import Friends from "./pages/Friends";
 
 const App = () => {
     const location = useLocation();
@@ -49,6 +50,10 @@ const App = () => {
                 />   <Route
                     path="/search"
                     element={token ? <Search /> : <Navigate to="auth" />}
+                />
+                <Route
+                    path="/friends"
+                    element={token ? <Friends /> : <Navigate to="auth" />}
                 />
 
                 <Route path="*" element={<Notfound />} />
