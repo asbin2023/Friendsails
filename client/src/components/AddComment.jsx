@@ -21,7 +21,7 @@ const AddComment = () => {
     const [post, setPost] = useState("");
     const [input, setInput] = useState("");
     console.clear();
-    console.log(profile);
+    console.log(post);
 
     async function getPost() {
         const foundPost = await axios.get(`/api/user/posts/${postId}`, {
@@ -123,6 +123,7 @@ const AddComment = () => {
                 </div>
             </div>
 
+
             <form onSubmit={handleCommentSubmit} className="addcom-form-com">
                 <h3> Add a comment:</h3>
                 <textarea
@@ -138,54 +139,53 @@ const AddComment = () => {
                 </button>
             </form>
 
-            <div className="addcom-last-div">
-                <h1>comments:</h1>
-                <div className="addcom-before-map">
-                    {post.comments.length > 0 ? (
-                        post.comments.map((comment) => {
-                            return (
-                                <div className="addcom-contain-map" key={comment._id}>
-                                    <div className="flex gap-10 items-center">
-                                        <h1 className="text-lg">
-                                            {" "}
-                                            <span className="font-bold text-xl">
-                                                {comment.commentText} {comment.edited && "(edited)"}
-                                            </span>
-                                            by{" "}
-                                            {comment.user === localStorage.getItem("username")
-                                                ? "You"
-                                                : comment.user}
-                                        </h1>
-                                        <button
-                                            onClick={() => handleCommentDelete(comment._id)}
-                                            className="p-1 m-1 bg-red-200 text-yellow-700"
-                                        >
-                                            Delete
-                                        </button>
-                                        <button
-                                            onClick={() => handleCommentEdit(comment._id)}
-                                            className="p-1 m-1 bg-blue-500 text-white"
-                                        >
-                                            Edit
-                                        </button>
-                                    </div>
-                                    <h3 className="p-1 bg-yellow-100 w-5/12">
-                                        posted at{" "}
-                                        {new Date(comment.createdAt).toLocaleTimeString([], {
-                                            hour: "2-digit",
-                                            minute: "2-digit",
-                                        })}{" "}
-                                        on {new Date(comment.createdAt).toLocaleDateString()}
-                                    </h3>
+
+
+
+            {post.comments.length > 0 ? (
+                post.comments.map((comment) => {
+                    return (
+                        <div className="addcom-contain-map" key={comment._id}>
+                            <div className="addcom-comment-fixme">
+                                <img src={comment.userPicture ? comment.userPicture : defUser} height={48} width={48} alt="" />
+                                <div>
+                                    <p className="addcom-notfaded"> {comment.name ? comment.name : comment.user} </p>
+                                    <p className="addcom-faded">{comment.name && comment.user}</p>
+                                    <p className="addcom-faded">{new Date(comment.createdAt).toLocaleDateString()}</p>
                                 </div>
-                            );
-                        })
-                    ) : (
-                        <p>no comments to display!, add a comment</p>
-                    )}
-                </div>
-            </div>
+                                {comment.user === localStorage.getItem('username') && <>
+                                    <button
+                                        onClick={() => handleCommentDelete(comment._id)}
+                                        className="addcom-last-div-button-delete"
+                                    >
+                                        Delete
+                                    </button>
+                                    <button
+                                        onClick={() => handleCommentEdit(comment._id)}
+                                        className="addcom-last-div-button-edit"
+                                    >
+                                        Edit
+                                    </button>
+                                </>}
+                            </div>
+                            <p className="addcom-ptag-comment" >
+
+                                {comment.commentText} <span>{comment.edited && "(edited)"}</span>
+
+
+                            </p>
+
+
+
+                        </div>
+                    );
+                })
+            ) : (
+                <p>no comments to display!, add a comment</p>
+            )}
         </div>
+
+
     ) : (
         <p>no post</p>
     );

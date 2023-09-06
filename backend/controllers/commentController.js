@@ -1,4 +1,4 @@
-const { User, Post, Comment } = require("../models/allModels");
+const { User, Post, Comment, UserProfile } = require("../models/allModels");
 const mongoose = require("mongoose");
 
 module.exports.getComments = async (req, res) => {
@@ -54,11 +54,16 @@ module.exports.postComment = async (req, res) => {
       return res.status(400).json({ message: "post required" });
     }
 
+    const userprofile = await UserProfile.findOne({ username });
+
     const comment = await Comment.create({
       commentText,
       post,
       user: username,
+      name: userprofile.name,
+      userPicture: userprofile.picture,
     });
+
     await Post.findByIdAndUpdate(postId, {
       $push: {
         comments: comment,

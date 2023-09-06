@@ -8,7 +8,7 @@ module.exports.getPosts = async (req, res) => {
     }
     const posts = await Post.find({ user: id }).populate(
       "comments",
-      "commentText createdAt user edited"
+      "commentText createdAt user edited userPicture name"
     );
 
     console.log("/////////");
@@ -27,7 +27,7 @@ module.exports.getGeneralPosts = async (req, res) => {
     }
     const posts = await Post.find({ author }).populate(
       "comments",
-      "commentText createdAt user edited"
+      "commentText createdAt user edited userPicture name"
     );
     console.log(posts.length);
     if (posts.length < 1) {
@@ -124,7 +124,7 @@ module.exports.getSinglePost = async (req, res) => {
     }
     const post = await Post.findById(postId).populate(
       "comments",
-      "createdAt commentText user edited"
+      "createdAt commentText user edited userPicture name"
     );
     res.status(200).json({ post });
   } catch (err) {
