@@ -49,7 +49,7 @@ module.exports.postComment = async (req, res) => {
       return res.status(400).json({ message: "missing credentials" });
     }
     const post = await Post.findOne({ _id: postId });
-    console.log(post);
+
     if (!post) {
       return res.status(400).json({ message: "post required" });
     }

@@ -23,6 +23,12 @@ const commentSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    userPicture: {
+      type: String,
+    },
+    name: {
+      type: String,
+    },
   },
 
   { timestamps: true }
