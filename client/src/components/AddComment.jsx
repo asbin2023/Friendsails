@@ -93,6 +93,7 @@ const AddComment = () => {
                 g o <span className="hideme">bbb</span> b a c k
             </button>
             <div className="addcom-map-div">
+
                 <div className="addcom-okay1">
                     <img
                         src={profile ? profile.picture : defUser}
@@ -121,27 +122,38 @@ const AddComment = () => {
                     )}
                     <p>{post.body}</p>
                 </div>
+
             </div>
 
 
+
             <form onSubmit={handleCommentSubmit} className="addcom-form-com">
-                <h3> Add a comment:</h3>
-                <textarea
-                    className="addcom-textarea"
-                    required
-                    rows="2"
-                    cols={40}
-                    placeholder="enter your comment here"
-                    onChange={(e) => setInput(e.target.value)}
-                ></textarea>
-                <button type="submit" className="addcom-form-btn">
-                    Comment
-                </button>
+                <hr />
+                <hr />
+                <hr />
+                <hr /><hr /><hr />
+                <div>
+                    <textarea
+                        className="addcom-textarea"
+                        required
+                        rows="3"
+                        cols={45}
+                        placeholder="enter your comment here"
+                        onChange={(e) => setInput(e.target.value)}
+                    ></textarea>
+                    <button type="submit" className="addcom-form-btn">
+                        comment
+                    </button>
+                </div>
+                <hr />
+                <hr />
+                <hr />
+                <hr /><hr /><hr />
             </form>
 
 
 
-
+            <p className="addcom-bigh1">c o m m e n t s:</p>
             {post.comments.length > 0 ? (
                 post.comments.map((comment) => {
                     return (
@@ -181,7 +193,7 @@ const AddComment = () => {
                     );
                 })
             ) : (
-                <p>no comments to display!, add a comment</p>
+                <p style={{ marginTop: '20px' }}>no comments to display..</p>
             )}
         </div>
 

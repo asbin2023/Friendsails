@@ -1,6 +1,6 @@
 .showposts-main-div {
 
-    width: 90%;
+    min-width: 600px;
     padding: 20px;
 }
 
@@ -86,8 +86,10 @@
     width: 100%;
     max-width: 700px;
 
+
+
     border-radius: 10px;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.164);
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.266);
 }
 
 .showposts-comment {
@@ -96,7 +98,7 @@
 }
 
 .showposts-map-div:hover {
-    background-color: rgba(250, 235, 215, 0.15);
+    background-color: rgba(119, 119, 119, 0.063);
     cursor: pointer;
 }
 
