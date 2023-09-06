@@ -1,42 +1,51 @@
 import { Link, useNavigate } from "react-router-dom";
-
+import "../styles/home.css"; // Import your custom CSS here
+import logo from "../images/logo.png";
 
 const Home = () => {
-    const navigate = useNavigate()
-    const token = localStorage.getItem('token')
+    const navigate = useNavigate();
+    const token = localStorage.getItem("token");
+
     function handleLogout() {
         localStorage.clear();
-        navigate('/auth')
-        window.location.reload()
-
+        navigate("/auth");
+        window.location.reload();
     }
 
     return (
         <div>
-            <nav className="flex justify-around bg-gray-200 p-3 gap-60">
-                <div className="flex gap-5">
-                    <p>logo</p>
-                    <h1>Placeholder</h1>
-                    {token && <Link to={'/search'}>Search</Link>}
-                </div>
-                <div className="flex gap-10">
-                    {token && (
-                        <>
-                            <Link to={"/dash"}>Feed</Link>
-                            <Link to={"/friends"}>Friends</Link>
-                            <Link to={"/#"}>Chats</Link>
-                            <Link to={"/profile"}>Profile</Link>
-                            <Link onClick={handleLogout}>Logout</Link>
-                        </>
-                    )}
+            <nav className="home-nav">
+                <div className="home-first-nav">
+                    <img src={logo} width={150} alt="Logo" className="home-logo" />
 
-                    {!token && (
-                        <>
-                            <Link to="/auth">Login</Link>
-                            <Link to="/auth">Register</Link>
-                        </>
+                    {token && (
+                        <Link to={"/search"} className="home-link">
+                            Search
+                        </Link>
                     )}
                 </div>
+
+                {token && (
+                    <div className="home-nav-small">
+                        <Link to={"/dash"} className="home-link">
+                            Feed
+                        </Link>
+                        <Link to={"/friends"} className="home-link">
+                            Friends
+                        </Link>
+                        <Link to={"/#"} className="home-link">
+                            Chats
+                        </Link>
+                        <Link to={"/profile"} className="home-link">
+                            Profile
+                        </Link>
+                        <Link onClick={handleLogout} className="home-link">
+                            Logout
+                        </Link>
+                    </div>
+                )}
+
+
             </nav>
         </div>
     );

@@ -1,6 +1,8 @@
 .auth-auth-auth {}
 
 .auth-first-div {
+    padding: 3%;
+
     display: flex;
     justify-content: space-evenly;
     align-items: center;
