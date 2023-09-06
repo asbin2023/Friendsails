@@ -86,6 +86,25 @@ const AddComment = () => {
     function handleCommentEdit(id) {
         navigate(`/editComment/${postId}/${id}`);
     }
+    async function deletePost(postId, e) {
+        e.stopPropagation();
+        let token = localStorage.getItem("token");
+        try {
+            await axios.delete(`/api/user/posts/${postId}`, {
+                headers: {
+                    Authorization: token,
+                },
+            });
+            navigate(-1);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    function sendToEdit(id, e) {
+        e.stopPropagation();
+        navigate(`/post/edit/${id}`);
+    }
+
 
     return post ? (
         <div className="addcom-main-div">
@@ -106,8 +125,8 @@ const AddComment = () => {
                         <p>{profile && post.author}</p>
                         <p> {new Date(post.createdAt).toLocaleDateString()}</p>
                     </div>
-                    <button className="addcom-delete">Delete</button>
-                    <button className="addcom-edit">Edit</button>
+                    <button className="addcom-delete" onClick={(e) => deletePost(post._id, e)}>Delete</button>
+                    <button className="addcom-edit" onClick={(e) => sendToEdit(post._id, e)}>Edit</button>
                 </div>
                 <div className="addcom-content">
                     <h1>

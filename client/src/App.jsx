@@ -12,6 +12,8 @@ import Friends from "./pages/Friends";
 import Profile from "./pages/Profile";
 import OtherProfiles from "./pages/OtherProfiles";
 import FriendPosts from "./components/FriendPosts";
+import Chats from "./pages/Chats";
+
 
 const App = () => {
 
@@ -69,6 +71,10 @@ const App = () => {
                 <Route
                     path="/friendPost/:postId"
                     element={token ? <FriendPosts /> : <Navigate to="auth" />}
+                />
+                <Route
+                    path="/chats"
+                    element={token ? <Chats /> : <Navigate to="auth" />}
                 />
 
                 <Route path="*" element={<Notfound />} />

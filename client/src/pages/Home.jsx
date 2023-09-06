@@ -33,7 +33,7 @@ const Home = () => {
                         <Link to={"/friends"} className="home-link">
                             Friends
                         </Link>
-                        <Link to={"/#"} className="home-link">
+                        <Link to={"/chats"} className="home-link">
                             Chats
                         </Link>
                         <Link to={"/profile"} className="home-link">

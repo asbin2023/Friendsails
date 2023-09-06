@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import "../styles/editpost.css";
 
 //"/post/edit/:postId"
 // api/user/posts/:postId --> for backend put for posts
@@ -11,7 +12,7 @@ const EditPost = () => {
     const [post, setPost] = useState(null);
 
     const { postId } = useParams();
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     const [image, setImage] = useState("");
 
@@ -23,19 +24,18 @@ const EditPost = () => {
         });
 
         setPost(foundPost.data.post);
-        setTitle(foundPost.data.post.title)
-        setBody(foundPost.data.post.body)
-        setImage(foundPost.data.post.image)
-
+        setTitle(foundPost.data.post.title);
+        setBody(foundPost.data.post.body);
+        setImage(foundPost.data.post.image);
     }
     async function handleFormSubmit(e) {
         e.preventDefault();
         if (title === post.title && body === post.body && image === post.image) {
-            console.log('good')
-            return navigate(-1)
+            console.log("good");
+            return navigate(-1);
         }
         try {
-            console.log('made it')
+            console.log("made it");
             let data = {
                 title,
                 body,
@@ -47,7 +47,6 @@ const EditPost = () => {
                 },
             });
 
-
             navigate(-1);
             //title. body, image is opt
         } catch (err) {
@@ -56,7 +55,6 @@ const EditPost = () => {
     }
     useEffect(() => {
         getPost();
-
     }, []);
 
     function handleImageChange(e) {
@@ -68,46 +66,56 @@ const EditPost = () => {
     return (
         post && (
             <div>
-                <h1>Edit post</h1>
-                <form className="flex w-6/12 p-5 flex-col" onSubmit={handleFormSubmit}>
-                    <label htmlFor="title">Post title:</label>
-                    <input
-                        className="border-2 border-black outline-none"
-                        type="text"
-                        id="title"
-                        placeholder="your post title"
-                        onChange={(e) => setTitle(e.target.value)}
-                        value={title}
-                        required
-                    />
-                    <label htmlFor="body">Post body content:</label>
-                    <textarea
-                        className="border-2 border-black outline-none"
-                        id="body"
-                        cols="20"
-                        required
-                        placeholder="ur text body"
-                        value={body}
-                        onChange={(e) => setBody(e.target.value)}
-                        rows="3"
-                    ></textarea>
-                    <label htmlFor="image">Include an image? (optional)</label>
-                    <input
-                        type="file"
-                        id="image"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                    />
-                    <div className="flex justify-evenly">
-                        <button className="bg-green-200 border-2 p-1" type="submit">
+                <form className="editpost-container" onSubmit={handleFormSubmit}>
+                    <div>
+                        <h1 className="editpost-creation">Edit post:</h1>
+                        <br />
+                        <label htmlFor="title">Post title:</label>
+                        <input
+                            className="editpost-input"
+                            type="text"
+                            id="title"
+                            placeholder="your post title"
+                            onChange={(e) => setTitle(e.target.value)}
+                            value={title}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="body">Post body content:</label>
+                        <textarea
+                            className="editpost-textarea"
+                            id="body"
+                            cols="20"
+                            required
+                            placeholder="ur text body"
+                            value={body}
+                            onChange={(e) => setBody(e.target.value)}
+                            rows="3"
+                        ></textarea>
+                    </div>
+
+                    <div>
+                        <label htmlFor="image">Include an image? (optional)</label>
+                        <input
+                            className="editpost-file-input"
+                            type="file"
+                            id="image"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                        />
+                    </div>
+                    <div className="editpost-buttons">
+                        <button className="editpost-submit-button" type="submit">
                             Save
                         </button>
-
-
-                        <button type="reset" onClick={() => navigate(-1)} className="bg-red-100 border-2 p-1 ">
+                        <button
+                            type="reset"
+                            onClick={() => navigate(-1)}
+                            className="editpost-cancel-button"
+                        >
                             Cancel
                         </button>
-
                     </div>
                 </form>
             </div>
