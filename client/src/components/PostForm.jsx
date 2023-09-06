@@ -1,6 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import '../styles/postform.css'
+
+
 
 
 
@@ -42,47 +45,55 @@ const PostForm = () => {
     }
 
     return (
-        <div>
-            <form className="flex w-6/12 p-5 flex-col" onSubmit={handleFormSubmit}>
-                <label htmlFor="title">Post title:</label>
-                <input
-                    className="border-2 border-black outline-none"
-                    type="text"
-                    id="title"
-                    placeholder="your post title"
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}
-                    required
-                />
-                <label htmlFor="body">Post body content:</label>
-                <textarea
-                    className="border-2 border-black outline-none resize-none"
-                    id="body"
-                    cols="20"
-                    required
-                    placeholder="ur text body"
-                    value={body}
-                    onChange={(e) => setBody(e.target.value)}
-                    rows="3"
-                ></textarea>
-                <label htmlFor="image">Include an image? (optional)</label>
-                <input
-                    type="file"
-                    id="image"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                />
-                <div className="flex justify-evenly">
-                    <button className="bg-green-200 border-2 p-1" type="submit">
-                        Post
-                    </button>
-                    <Link to='/dash'> <button type="reset" className="bg-red-100 border-2 p-1 ">
+        <div className="postform-main-div">
+            <form className="postform-container" onSubmit={handleFormSubmit}>
+                <div>
+                    <h1 className="postform-creation">Post Creation:</h1>
+                    <br />
+                    <label htmlFor="title" className="postform-label">Post title:</label>
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="your post title"
+                        className="postform-input"
+                        onChange={(e) => setTitle(e.target.value)}
+                        value={title}
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="body" className="postform-label">Post body content:</label>
+                    <textarea
+                        id="body"
+                        cols="20"
+                        required
+                        placeholder="ur text body"
+                        className="postform-textarea"
+                        value={body}
+                        onChange={(e) => setBody(e.target.value)}
+                        rows="3"
+                    ></textarea>
+                </div>
+                <div>
+                    <label htmlFor="image" className="postform-label">Include an image? (optional)</label>
+                    <input
+                        type="file"
+                        id="image"
+                        accept="image/*"
+                        className="postform-file-input"
+                        onChange={handleImageChange}
+                    />
+                </div>
+                <div className="postform-buttons">
+                    <button type="submit" className="postform-submit-button">Post</button>
+                    <button type="reset" onClick={() => navigate(-1)} className="postform-cancel-button">
                         Cancel
-                    </button></Link>
+                    </button>
                 </div>
             </form>
         </div>
     );
+
 };
 
 export default PostForm;

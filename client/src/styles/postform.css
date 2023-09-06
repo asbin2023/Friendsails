@@ -1,0 +1,66 @@
+.postform-container {
+
+    padding: 70px;
+    display: flex;
+    width: 600px;
+    flex-direction: column;
+    gap: 30px;
+    margin: 0 auto
+}
+
+.postform-container div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.postform-input {
+    padding: 7px;
+    outline: none;
+}
+
+.postform-textarea {
+    padding: 7px;
+    outline: none;
+    resize: none;
+}
+
+.postform-submit-button {
+    cursor: pointer;
+    background-color: rgba(62, 18, 115, 0.159);
+    border: none;
+    padding: 5px;
+
+}
+
+.postform-submit-button:hover {
+    background-color: black;
+    color: rgb(223, 197, 253);
+}
+
+.postform-cancel-button {
+    cursor: pointer;
+    background-color: rgba(154, 153, 153, 0.232);
+    border: none;
+    padding: 5px;
+
+}
+
+.postform-cancel-button:hover {
+    background-color: rgba(0, 0, 0, 0.48);
+    color: white;
+}
+
+.postform-file-input {
+    cursor: pointer;
+}
+
+.postform-creation {
+    color: rgba(49, 49, 49, 0.83);
+    text-align: center;
+    font-size: 30px;
+    padding: 10px;
+
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.266);
+
+}
