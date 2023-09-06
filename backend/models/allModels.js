@@ -104,10 +104,7 @@ const userProfileSchema = new Schema({
     type: String,
     required: true,
   },
-  background: {
-    type: String,
-    required: true,
-  },
+
   name: {
     type: String,
     required: true,

@@ -48,7 +48,7 @@ const OtherProfiles = () => {
                 <h1>Name: {profile.name}</h1>
                 <h1>username: {profile.username}</h1>
                 <img src={profile.picture} width={50} alt="" />
-                <img src={profile.background} width={100} alt="" />
+
                 <h2>Location: {profile.location}</h2>
                 <a href={profile.link}>Link</a>
                 <h1>About: {profile.about}</h1>

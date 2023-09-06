@@ -20,17 +20,8 @@ module.exports.postProfile = async (req, res) => {
   try {
     const { id, username } = req;
     console.log(req.body);
-    const { picture, background, name, about, location, link } = req.body;
-    if (
-      !id ||
-      !username ||
-      !picture ||
-      !background ||
-      !name ||
-      !about ||
-      !location ||
-      !link
-    ) {
+    const { picture, name, about, location, link } = req.body;
+    if (!id || !username || !picture || !name || !about || !location || !link) {
       return res.status(404).json({
         message: "not authorized / missing",
       });

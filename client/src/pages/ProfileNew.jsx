@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const ProfileNew = () => {
     const [picture, setPicture] = useState("");
-    const [background, setBackground] = useState("");
+
     const [name, setName] = useState("");
     const [about, setAbout] = useState("");
     const [location, setLocation] = useState("");
@@ -14,7 +14,7 @@ const ProfileNew = () => {
         try {
             let data = {
                 picture,
-                background,
+
                 name,
                 about,
                 location,
@@ -38,12 +38,7 @@ const ProfileNew = () => {
         render.onloadend = () => setPicture(render.result);
         render.readAsDataURL(file);
     }
-    function handleBackgroundChange(e) {
-        const file = e.target.files[0];
-        const render = new FileReader();
-        render.onloadend = () => setBackground(render.result);
-        render.readAsDataURL(file);
-    }
+
     return (
         <div>
             <form
@@ -95,14 +90,7 @@ const ProfileNew = () => {
                     accept="image/*"
                     onChange={handlePictureChange}
                 />
-                <label htmlFor="background">Include your background pic</label>
-                <input
-                    required
-                    type="file"
-                    id="background"
-                    accept="image/*"
-                    onChange={handleBackgroundChange}
-                />
+
                 <div className="flex justify-evenly">
                     <button type="submit" className="p-1.5 bg-blue-600 text-white">
                         Submit

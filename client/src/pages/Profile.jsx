@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ShowPosts from "../components/ShowPosts";
 import ProfileNew from "./ProfileNew";
+import '../styles/profile.css'
 
 
 const Profile = () => {
@@ -26,6 +27,7 @@ const Profile = () => {
             }
         }
         getProfile();
+        setToggle(false)
     }, []);
 
     return !profile ? (
@@ -34,11 +36,11 @@ const Profile = () => {
 
                 Looks like your profile is empty. Click here to set up your profile.
             </p>
-            <button className="p-2 bg-purple-300 text-white" onClick={() => setToggle(!toggle)}>Setup</button>
-            <div className={!toggle && 'hidden'}>
+            <button onClick={() => setToggle(!toggle)}>Setup</button>
 
-                <ProfileNew />
-            </div>
+            {toggle &&
+                <ProfileNew />}
+
         </div>
     ) : (
         <div>
@@ -46,7 +48,7 @@ const Profile = () => {
                 <h1>Name: {profile.name}</h1>
                 <h1>username: {profile.username}</h1>
                 <img src={profile.picture} width={50} alt="" />
-                <img src={profile.background} width={100} alt="" />
+
                 <h2>Location: {profile.location}</h2>
                 <a href={profile.link}>Link</a>
                 <h1>About: {profile.about}</h1>
