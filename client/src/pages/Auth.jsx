@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import friends from "../images/friends.avif";
 import sign from "../images/sign.avif";
-import '../styles/auth.css'
+import "../styles/auth.css";
 
 const regex = /[^A-Za-z0-9]+/g;
 
@@ -98,21 +98,48 @@ const Auth = () => {
     }
 
     return (
-        <div>
+        <div className="auth-auth-auth">
             <div className="auth-first-div">
                 <h1 className="auth-heading">
-                    Welcome to Placeholder. <br /> Make friends,
-                    <br /> Meet Friends, <br /> Message Friends,
-                    <br /> Friends Forever!
+                    Make friends,
+                    <br /> Meet Friends, <br /> Message Friends
                 </h1>
                 <img className="auth-image" src={friends} alt="" />
             </div>
+            <hr style={{ width: "70%", margin: "0 auto", marginTop: "30px" }} />
+
             <div className="auth-second-div">
-                <img className="auth-image" src={sign} alt="" />
+                {!switchToggle ? (
+                    <div className="auth-switch-stuff">
+                        <h1> Lets get you <br /> started! </h1>{" "}
+                        <div>
+                            <h2>  Already a user? </h2>
+                            <button
+                                className="auth-button auth-secondary-button"
+                                type="reset"
+                                onClick={handleSwitchToggle}
+                            >
+                                Sign in
+                            </button>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="auth-switch-stuff">
+                        <h1>Welcome back!</h1>
+                        <div>
+                            <h2>Need an account?</h2>
+                            <button
+                                className="auth-button auth-secondary-button"
+                                type="reset"
+                                onClick={handleSwitchToggle}
+                            >
+                                Sign up
+                            </button>
+                        </div>
+                    </div>
+                )}
                 {!switchToggle && (
                     <form className="auth-signup-form" onSubmit={handleSignupFormSubmit}>
-                        <label className="auth-form-label">Create a new account</label>
-
                         <div className="auth-input-group">
                             <label htmlFor="signup-email">Your email</label>
                             <input
@@ -164,20 +191,13 @@ const Auth = () => {
                             <button className="auth-button" type="submit">
                                 Sign up!
                             </button>
-                            <button
-                                className="auth-button auth-secondary-button"
-                                type="reset"
-                                onClick={handleSwitchToggle}
-                            >
-                                Already a user? Sign in
-                            </button>
                         </div>
                     </form>
                 )}
 
                 {switchToggle && (
                     <form className="auth-login-form" onSubmit={handleLoginFormSubmit}>
-                        <label className="auth-form-label">Sign in to your account</label>
+
 
                         <div className="auth-input-group">
                             <label htmlFor="login-username">Enter your Username</label>
@@ -211,18 +231,15 @@ const Auth = () => {
                             <button className="auth-button" type="submit">
                                 Login
                             </button>
-                            <button
-                                className="auth-button auth-secondary-button"
-                                type="reset"
-                                onClick={handleSwitchToggle}
-                            >
-                                Create a new account
-                            </button>
                         </div>
                     </form>
                 )}
+
+
+
             </div>
         </div>
+
     );
 };
 

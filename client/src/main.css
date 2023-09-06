@@ -1,7 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 
-/* * {
-    border: 1px solid rgba(42, 33, 33, 0.61)
-} */
+}
