@@ -18,7 +18,7 @@ const App = () => {
     const token = localStorage.getItem("token");
 
     return (
-        <div>
+        <div className="app">
             <Home />
             <Routes>
                 <Route

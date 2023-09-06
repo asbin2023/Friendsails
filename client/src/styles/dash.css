@@ -1,9 +1,9 @@
 .dash-users {
     display: flex;
     flex-direction: column;
-    padding: 30px;
-    border-right: 2px solid rgba(0, 0, 0, 0.175);
-    height: 100vh;
+    padding: 40px;
+    padding-right: 0;
+
     /* background-color: yellow; */
 }
 

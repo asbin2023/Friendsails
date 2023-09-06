@@ -1,10 +1,33 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "../styles/showposts.css";
+import defUser from "../images/default.jpg";
 
 const ShowPosts = () => {
     const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
+    const [profile, setProfile] = useState("");
+
+    useEffect(() => {
+        async function getProfile() {
+            try {
+                const res = await axios.get(
+                    `/api/user/profile/${localStorage.getItem("username")}`,
+                    {
+                        headers: {
+                            Authorization: localStorage.getItem("token"),
+                        },
+                    }
+                );
+                setProfile(res.data.userProfile);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        getProfile();
+        getPosts();
+    }, []);
 
     async function getPosts() {
         let token = localStorage.getItem("token");
@@ -20,9 +43,7 @@ const ShowPosts = () => {
         }
     }
 
-    useEffect(() => {
-        getPosts();
-    }, []);
+    console.log(profile);
 
     function sendToEdit(id, e) {
         e.stopPropagation();
@@ -46,58 +67,69 @@ const ShowPosts = () => {
     function toEdit(id) {
         navigate(`/addComment/${id}`);
     }
+    console.log(posts);
 
     return posts.length > 0 ? (
-        <div>
-            <div className=" p-10 pt-10">
-                {posts.map((item) => {
-                    const createdAt = new Date(item.createdAt);
-                    const newData = createdAt.toLocaleDateString();
-                    const newTime = createdAt.toLocaleTimeString([], {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                    });
-                    return (
-                        <div
-                            className="border-2 mt-7 p-2 cursor-pointer bg-slate-100"
-                            onClick={() => toEdit(item._id)}
-                            key={item._id}
-                        >
-                            <div className="flex w-2/5 justify-between">
-                                <h1 className="font-bold">{item.title} <span>{item.edited && '(edited)'}</span></h1>
-                                <div className="flex">
-                                    <button
-                                        onClick={(e) => deletePost(item._id, e)}
-                                        className="bg-red-200 p-1 text-white"
-                                    >
-                                        Delete
-                                    </button>
-                                    <button
-                                        onClick={(e) => sendToEdit(item._id, e)}
-                                        className=" ml-1 p-1 text-white bg-blue-500"
-                                    >
-                                        Edit
-                                    </button>
-                                </div>
-                            </div>
-                            {item.image && (
-                                <img className="p-2" src={item.image} width={400} />
-                            )}
-                            <p className="p-2">{item.body}</p>
-                            <p>{item.comments.length} Comments</p>
+        <div className="showposts-main-div">
 
-                            <h1 className=" border-2 p-1 bg-orange-200">
-                                posted by: {item.author === localStorage.getItem('username') ? 'You' : item.author} on {newTime} at {newData}
-                            </h1>
+            {posts.map((item) => {
+                const createdAt = new Date(item.createdAt);
+                const newDate = createdAt.toLocaleDateString();
+                const newTime = createdAt.toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                });
+                return (
+                    <div
+                        className="showposts-map-div"
+                        onClick={() => toEdit(item._id)}
+                        key={item._id}
+                    >
+                        <div className="showposts-okay1">
+                            <img
+                                src={profile ? profile.picture : defUser}
+                                alt=""
+                                height={48}
+                                width={48}
+                            />
+                            <div className="showposts-okay2">
+
+                                <p id="showposts-name">{profile ? profile.name : item.author}</p>
+                                <p>{profile && item.author}</p>
+                                <p>{newDate}</p>
+                            </div>
+
+                            <button className="showposts-delete" onClick={(e) => deletePost(item._id, e)}>
+                                Delete
+                            </button>
+                            <button className="showposts-edit" onClick={(e) => sendToEdit(item._id, e)}>Edit</button>
+
                         </div>
-                    );
-                })}
-            </div>
+                        <div className="showposts-content">
+                            <h1>
+                                {item.title} <span className="showposts-edited-title">{item.edited && "(edited)"}</span>
+                            </h1>
+
+                            {item.image && (
+                                <img
+                                    className="showposts-image"
+                                    src={item.image}
+                                    width={400}
+                                />
+                            )}
+                            <p>{item.body}</p>
+                        </div>
+
+                        <p className="showposts-comment">{item.comments.length} Comments</p>
+
+                    </div>
+                );
+            })}
+
         </div>
     ) : (
         <div className="p-3">
             <p>You currently have no posts!</p>
-
         </div>
     );
 };
