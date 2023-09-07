@@ -121,8 +121,8 @@ const AddComment = () => {
                         alt=""
                     />
                     <div className="addcom-okay2">
-                        <p id="addcom-name"> {profile ? profile.name : post.author}</p>
-                        <p>{profile && post.author}</p>
+                        <p id="addcom-name"> {profile ? profile.name : '@' + post.author}</p>
+                        <p>{profile && '@' + post.author}</p>
                         <p> {new Date(post.createdAt).toLocaleDateString()}</p>
                     </div>
                     <button className="addcom-delete" onClick={(e) => deletePost(post._id, e)}>Delete</button>
@@ -180,8 +180,8 @@ const AddComment = () => {
                             <div className="addcom-comment-fixme">
                                 <img src={comment.userPicture ? comment.userPicture : defUser} height={48} width={48} alt="" />
                                 <div>
-                                    <p className="addcom-notfaded"> {comment.name ? comment.name : comment.user} </p>
-                                    <p className="addcom-faded">{comment.name && comment.user}</p>
+                                    <p className="addcom-notfaded"> {comment.name ? comment.name : '@' + comment.user} </p>
+                                    <p className="addcom-faded">{comment.name && '@' + comment.user}</p>
                                     <p className="addcom-faded">{new Date(comment.createdAt).toLocaleDateString()}</p>
                                 </div>
                                 {comment.user === localStorage.getItem('username') && <>

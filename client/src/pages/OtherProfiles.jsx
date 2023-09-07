@@ -50,7 +50,7 @@ const OtherProfiles = () => {
                 <img src={profile.picture} width={50} alt="" />
 
                 <h2>Location: {profile.location}</h2>
-                <a href={profile.link}>Link</a>
+
                 <h1>About: {profile.about}</h1>
             </div>
             <div className="p-20 m-10">

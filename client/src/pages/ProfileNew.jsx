@@ -7,7 +7,6 @@ const ProfileNew = () => {
     const [name, setName] = useState("");
     const [about, setAbout] = useState("");
     const [location, setLocation] = useState("");
-    const [link, setLink] = useState("");
 
     async function handleProfileSubmit(e) {
         e.preventDefault();
@@ -18,7 +17,6 @@ const ProfileNew = () => {
                 name,
                 about,
                 location,
-                link,
             };
             const res = await axios.post("/api/user/profile", data, {
                 headers: {
@@ -41,10 +39,7 @@ const ProfileNew = () => {
 
     return (
         <div>
-            <form
-                onSubmit={handleProfileSubmit}
-                className="flex m-3 flex-col gap-3"
-            >
+            <form onSubmit={handleProfileSubmit} className="flex m-3 flex-col gap-3">
                 <label htmlFor="name">your name:</label>
                 <input
                     className="p-1 bg-slate-100 outline-none border-1"
@@ -63,15 +58,7 @@ const ProfileNew = () => {
                     required
                     onChange={(e) => setLocation(e.target.value)}
                 />
-                <label htmlFor="link">your link:</label>
-                <input
-                    className="p-1 bg-slate-100 outline-none border-1"
-                    type="text"
-                    id="link"
-                    value={link}
-                    required
-                    onChange={(e) => setLink(e.target.value)}
-                />
+
                 <label htmlFor="about">your about me:</label>
                 <textarea
                     rows={3}
@@ -101,7 +88,7 @@ const ProfileNew = () => {
                 </div>
             </form>
         </div>
-    )
-}
+    );
+};
 
-export default ProfileNew
+export default ProfileNew;

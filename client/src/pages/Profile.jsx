@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ShowPosts from "../components/ShowPosts";
 import ProfileNew from "./ProfileNew";
-import '../styles/profile.css'
-
+import "../styles/profile.css";
+import { MdOutlineLocationOn } from "react-icons/md";
+import { AiFillEdit } from "react-icons/ai";
 
 const Profile = () => {
     const [profile, setProfile] = useState("");
-    const [toggle, setToggle] = useState(false)
+    const [toggle, setToggle] = useState(false);
 
     useEffect(() => {
         async function getProfile() {
@@ -27,35 +28,46 @@ const Profile = () => {
             }
         }
         getProfile();
-        setToggle(false)
+        setToggle(false);
     }, []);
 
     return !profile ? (
         <div>
             <p>
-
                 Looks like your profile is empty. Click here to set up your profile.
             </p>
             <button onClick={() => setToggle(!toggle)}>Setup</button>
 
-            {toggle &&
-                <ProfileNew />}
-
+            {toggle && <ProfileNew />}
         </div>
     ) : (
-        <div>
-            <div className="p-20 m-10">
-                <h1>Name: {profile.name}</h1>
-                <h1>username: {profile.username}</h1>
-                <img src={profile.picture} width={50} alt="" />
+        <div className="profile-main-div">
+            <div className="profile-first-div">
+                <img src={profile.picture} alt="" />
+                <div>
+                    <p className="profile-name">{profile.name}</p>
+                    <p className="profile-username"> @{profile.username}</p>
+                    <p className="profile-location">
 
-                <h2>Location: {profile.location}</h2>
-                <a href={profile.link}>Link</a>
-                <h1>About: {profile.about}</h1>
+                        <MdOutlineLocationOn />
+                        {profile.location}
+                    </p>
+                </div>
+                <span className="profile-edit-btn">
+
+                    <AiFillEdit />
+                </span>
             </div>
-            <div className="p-20">
-                <h1> Your posts:</h1>
-                <ShowPosts />
+            <div className="profile-last">
+                <p className="profile-about">
+                    <br />
+                    <span>a b o u t <span style={{ opacity: '0' }}>o</span> m e:</span> <br /><br />
+                    {profile.about}
+                </p>
+
+                <div>
+                    <ShowPosts />
+                </div>
             </div>
         </div>
     );

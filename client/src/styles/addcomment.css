@@ -35,12 +35,13 @@
 
 .addcom-okay2 p {
     color: rgba(10, 10, 10, 0.594);
+    font-size: 13.5px;
 }
 
 #addcom-name {
     font-weight: bold;
     color: black;
-    font-size: 17px;
+    font-size: 15px;
 }
 
 .addcom-okay1 img {

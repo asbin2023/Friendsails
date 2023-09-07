@@ -22,7 +22,7 @@
 #showposts-name {
     font-weight: bold;
     color: black;
-    font-size: 17px;
+    font-size: 15px;
 
 }
 
@@ -31,6 +31,7 @@
 }
 
 .showposts-okay2 {
+    font-size: 13.5px;
     display: flex;
     flex-direction: column;
 

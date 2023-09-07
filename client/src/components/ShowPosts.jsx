@@ -94,8 +94,8 @@ const ShowPosts = () => {
                             />
                             <div className="showposts-okay2">
 
-                                <p id="showposts-name">{profile ? profile.name : item.author}</p>
-                                <p>{profile && item.author}</p>
+                                <p id="showposts-name">{profile ? profile.name : '@' + item.author}</p>
+                                <p>{profile && '@' + item.author}</p>
                                 <p>{newDate}</p>
                             </div>
 
