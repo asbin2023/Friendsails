@@ -34,10 +34,10 @@ const Profile = () => {
 
     return !profile ? (
         <div>
-            <p>
+            {!toggle && <p style={{ marginTop: '100px', marginLeft: '170px', fontSize: '30px' }}>
                 Looks like your profile is empty. Click here to set up your profile.
-            </p>
-            <button onClick={() => setToggle(!toggle)}>Setup</button>
+            </p>}
+            {!toggle && <button style={{ cursor: 'pointer', padding: '17px', marginLeft: '170px', marginTop: '30px', backgroundColor: 'thistle', color: 'white', border: 'none', borderRadius: '10px', fontSize: '30px' }} onClick={() => setToggle(!toggle)}>Setup</button>}
 
             {toggle && <ProfileNew />}
         </div>

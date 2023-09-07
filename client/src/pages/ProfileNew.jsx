@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const ProfileNew = () => {
     const [picture, setPicture] = useState("");
+    const navigate = useNavigate()
 
     const [name, setName] = useState("");
     const [about, setAbout] = useState("");
@@ -37,58 +38,68 @@ const ProfileNew = () => {
         render.readAsDataURL(file);
     }
 
-    return (
-        <div>
-            <form onSubmit={handleProfileSubmit} className="flex m-3 flex-col gap-3">
+    return <div>
+        <form onSubmit={handleProfileSubmit} className="editprofile-main-div">
+            <div className="editprofile-div">
+                <h1 className="editprofile-opening">Profile Creation:</h1>
                 <label htmlFor="name">your name:</label>
                 <input
-                    className="p-1 bg-slate-100 outline-none border-1"
+                    className="editprofile-input"
+
                     type="text"
                     id="name"
                     value={name}
                     required
                     onChange={(e) => setName(e.target.value)}
                 />
+            </div>
+            <div className="editprofile-div">
                 <label htmlFor="location">your location:</label>
                 <input
-                    className="p-1 bg-slate-100 outline-none border-1"
+                    className="editprofile-input"
                     type="text"
                     id="location"
                     value={location}
                     required
                     onChange={(e) => setLocation(e.target.value)}
                 />
+            </div>
 
+            <div className="editprofile-div">
                 <label htmlFor="about">your about me:</label>
                 <textarea
                     rows={3}
-                    className="p-1 bg-slate-100 outline-none border-1 resize-none"
+                    className="editprofile-textarea"
+
                     type="text"
                     id="about"
                     value={about}
                     required
                     onChange={(e) => setAbout(e.target.value)}
                 />
+            </div>
+            <div className="editprofile-div">
                 <label htmlFor="picture">Include your profile pic</label>
                 <input
-                    required
+                    className="editprofile-file"
                     type="file"
                     id="picture"
                     accept="image/*"
                     onChange={handlePictureChange}
                 />
+            </div>
 
-                <div className="flex justify-evenly">
-                    <button type="submit" className="p-1.5 bg-blue-600 text-white">
-                        Submit
-                    </button>
-                    <button type="reset" className="p-1.5 bg-red-200 text-white">
-                        Clear
-                    </button>
-                </div>
-            </form>
-        </div>
-    );
+            <div className="editprofile-div editprofile-buttons">
+                <button type="submit" className="editprofile-submit">
+                    Submit
+                </button>
+                <button onClick={() => navigate(-1)} type="reset" className="editprofile-clear">
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+
 };
 
 export default ProfileNew;
