@@ -67,10 +67,12 @@ const App = () => {
                     element={token ? <Profile /> : <Navigate to="auth" />}
                 />
                 <Route
+                    //this is used in list of users in the dash/feed 
                     path="/profile/:username"
                     element={token ? <OtherProfiles /> : <Navigate to="auth" />}
                 />
                 <Route
+                    //this is used when a user goes to another user profile and clicks on their post
                     path="/friendPost/:postId"
                     element={token ? <FriendPosts /> : <Navigate to="auth" />}
                 />

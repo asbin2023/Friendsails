@@ -81,6 +81,7 @@ const EditProfile = () => {
                     <h1 className="editprofile-opening">Edit Profile:</h1>
                     <label htmlFor="name">your name:</label>
                     <input
+                        className="editprofile-input"
 
                         type="text"
                         id="name"

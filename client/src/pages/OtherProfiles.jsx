@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { MdOutlineLocationOn } from "react-icons/md";
+import { AiFillEdit } from "react-icons/ai";
 
 const OtherProfiles = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const { username } = useParams();
 
     const [profile, setProfile] = useState("");
@@ -40,66 +42,95 @@ const OtherProfiles = () => {
     }, []);
 
     function toFriendsPost(id) {
-        navigate(`/friendPost/${id}`)
+        navigate(`/friendPost/${id}`);
     }
-    return profile ? (
+    return !profile ? (
         <div>
-            <div className="p-20 m-10">
-                <h1>Name: {profile.name}</h1>
-                <h1>username: {profile.username}</h1>
-                <img src={profile.picture} width={50} alt="" />
-
-                <h2>Location: {profile.location}</h2>
-
-                <h1>About: {profile.about}</h1>
-            </div>
-            <div className="p-20 m-10">
-                <h1>{profile.username}'s posts: </h1>
-                {posts.length > 0 ? (
-                    <div className=" p-10 pt-10">
-                        {posts.map((item) => {
-                            const createdAt = new Date(item.createdAt);
-                            const newData = createdAt.toLocaleDateString();
-                            const newTime = createdAt.toLocaleTimeString([], {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                            });
-                            return (
-                                <div
-                                    className="border-2 mt-7 p-2 cursor-pointer bg-slate-100"
-                                    onClick={() => toFriendsPost(item._id)}
-                                    key={item._id}
-                                >
-                                    <div className="flex w-2/5 justify-between">
-                                        <h1 className="font-bold">
-                                            {item.title} <span>{item.edited && "(edited)"}</span>
-                                        </h1>
-
-                                    </div>
-                                    {item.image && (
-                                        <img className="p-2" src={item.image} width={400} />
-                                    )}
-                                    <p className="p-2">{item.body}</p>
-                                    <p>{item.comments.length} Comments</p>
-
-                                    <h1 className=" border-2 p-1 bg-orange-200">
-                                        posted by:{" "}
-                                        {item.author === localStorage.getItem("username")
-                                            ? "You"
-                                            : item.author}
-                                        on {newTime} at {newData}
-                                    </h1>
-                                </div>
-                            );
-                        })}
-                    </div>
-                ) : (
-                    <p>{profile.username} doesnt have any posts</p>
-                )}
-            </div>
+            <p>
+                {username} hasnt set up their profile..
+            </p>
         </div>
     ) : (
-        <p>{username} hasnt set up their profile page.. nothing to display :/</p>
+        <div className="profile-main-div">
+            <div className="profile-first-div">
+                <img src={profile.picture} alt="" />
+                <div>
+                    <p className="profile-name">{profile.name}</p>
+                    <p className="profile-username"> @{profile.username}</p>
+                    <p className="profile-location">
+                        <MdOutlineLocationOn />
+                        {profile.location}
+                    </p>
+                </div>
+            </div>
+            <div className="profile-last">
+                <p className="profile-about">
+                    <br />
+                    <span>
+                        a b o u t <span style={{ opacity: "0" }}>o</span> m e:
+                    </span>{" "}
+                    <br />
+                    <br />
+                    {profile.about}
+                </p>
+
+                <div>
+                    {posts.length > 0 && (
+                        <div className="showposts-main-div">
+                            {posts.map((item) => {
+                                const createdAt = new Date(item.createdAt);
+                                const newDate = createdAt.toLocaleDateString();
+
+                                return (
+                                    <div
+                                        className="showposts-map-div"
+                                        onClick={() => toFriendsPost(item._id)}
+                                        key={item._id}
+                                    >
+                                        <div className="showposts-okay1">
+                                            <img
+                                                src={profile.picture}
+                                                alt=""
+                                                height={48}
+                                                width={48}
+                                            />
+                                            <div className="showposts-okay2">
+                                                <p id="showposts-name">
+                                                    {profile ? profile.name : "@" + item.author}
+                                                </p>
+                                                <p>{profile && "@" + item.author}</p>
+                                                <p>{newDate}</p>
+                                            </div>
+                                        </div>
+                                        <div className="showposts-content">
+                                            <h1>
+                                                {item.title}{" "}
+                                                <span className="showposts-edited-title">
+                                                    {item.edited && "(edited)"}
+                                                </span>
+                                            </h1>
+
+                                            {item.image && (
+                                                <img
+                                                    className="showposts-image"
+                                                    src={item.image}
+                                                    width={400}
+                                                />
+                                            )}
+                                            <p>{item.body}</p>
+                                        </div>
+
+                                        <p className="showposts-comment">
+                                            {item.comments.length} Comments
+                                        </p>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
     );
 };
 

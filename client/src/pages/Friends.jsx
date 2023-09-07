@@ -3,7 +3,7 @@ import React from 'react'
 const Friends = () => {
     return (
         <div>
-            friends
+            friends page is work in progress
         </div>
     )
 }
