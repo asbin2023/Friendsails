@@ -1,61 +1,65 @@
-.editpost-container {
+.editprofile-main-div {
     padding: 30px;
     display: flex;
-    width: 500px;
     flex-direction: column;
+    width: 500px;
     gap: 30px;
-    margin: 0 auto;
+    margin: 0 auto
 }
 
-.editpost-container div {
+.editprofile-div {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.editpost-input {
+.editprofile-input {
     padding: 7px;
     outline: none;
 }
 
-.editpost-textarea {
+.editprofile-textarea {
     padding: 7px;
     outline: none;
     resize: none;
 }
 
-.editpost-submit-button {
+.editprofile-submit {
     cursor: pointer;
     background-color: rgba(62, 18, 115, 0.159);
     border: none;
     padding: 5px;
 }
 
-.editpost-submit-button:hover {
+.editprofile-submit:hover {
     background-color: black;
     color: rgb(223, 197, 253);
 }
 
-.editpost-cancel-button {
+.editprofile-clear {
     cursor: pointer;
     background-color: rgba(154, 153, 153, 0.232);
     border: none;
     padding: 5px;
+
 }
 
-.editpost-cancel-button:hover {
+.editprofile-clear:hover {
     background-color: rgba(0, 0, 0, 0.48);
     color: white;
 }
 
-.editpost-file-input {
+.editprofile-file {
     cursor: pointer;
 }
 
-.editpost-creation {
+.editprofile-opening {
     color: rgba(49, 49, 49, 0.83);
     text-align: center;
     font-size: 30px;
     padding: 10px;
+    margin-bottom: 20px;
+    ;
+
     box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.266);
 }

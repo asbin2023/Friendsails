@@ -1,8 +1,8 @@
 .postform-container {
 
-    padding: 70px;
+    padding: 30px;
     display: flex;
-    width: 600px;
+    width: 500px;
     flex-direction: column;
     gap: 30px;
     margin: 0 auto

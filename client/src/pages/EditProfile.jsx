@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import '../styles/editprofile.css'
 
 const EditProfile = () => {
     const [profile, setProfile] = useState("");
@@ -75,50 +76,61 @@ const EditProfile = () => {
 
     return profile ? (
         <div>
-            <form onSubmit={handleProfileSubmit} className="flex m-3 flex-col gap-3">
-                <label htmlFor="name">your name:</label>
-                <input
-                    className="p-1 bg-slate-100 outline-none border-1"
-                    type="text"
-                    id="name"
-                    value={name}
-                    required
-                    onChange={(e) => setName(e.target.value)}
-                />
-                <label htmlFor="location">your location:</label>
-                <input
-                    className="p-1 bg-slate-100 outline-none border-1"
-                    type="text"
-                    id="location"
-                    value={location}
-                    required
-                    onChange={(e) => setLocation(e.target.value)}
-                />
+            <form onSubmit={handleProfileSubmit} className="editprofile-main-div">
+                <div className="editprofile-div">
+                    <h1 className="editprofile-opening">Edit Profile:</h1>
+                    <label htmlFor="name">your name:</label>
+                    <input
 
-                <label htmlFor="about">your about me:</label>
-                <textarea
-                    rows={3}
-                    className="p-1 bg-slate-100 outline-none border-1 resize-none"
-                    type="text"
-                    id="about"
-                    value={about}
-                    required
-                    onChange={(e) => setAbout(e.target.value)}
-                />
-                <label htmlFor="picture">Include your profile pic</label>
-                <input
-                    type="file"
-                    id="picture"
-                    accept="image/*"
-                    onChange={handlePictureChange}
-                />
+                        type="text"
+                        id="name"
+                        value={name}
+                        required
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </div>
+                <div className="editprofile-div">
+                    <label htmlFor="location">your location:</label>
+                    <input
+                        className="editprofile-input"
+                        type="text"
+                        id="location"
+                        value={location}
+                        required
+                        onChange={(e) => setLocation(e.target.value)}
+                    />
+                </div>
 
-                <div className="flex justify-evenly">
-                    <button type="submit" className="p-1.5 bg-blue-600 text-white">
+                <div className="editprofile-div">
+                    <label htmlFor="about">your about me:</label>
+                    <textarea
+                        rows={3}
+                        className="editprofile-textarea"
+
+                        type="text"
+                        id="about"
+                        value={about}
+                        required
+                        onChange={(e) => setAbout(e.target.value)}
+                    />
+                </div>
+                <div className="editprofile-div">
+                    <label htmlFor="picture">Include your profile pic</label>
+                    <input
+                        className="editprofile-file"
+                        type="file"
+                        id="picture"
+                        accept="image/*"
+                        onChange={handlePictureChange}
+                    />
+                </div>
+
+                <div className="editprofile-div editprofile-buttons">
+                    <button type="submit" className="editprofile-submit">
                         Submit
                     </button>
-                    <button type="reset" className="p-1.5 bg-red-200 text-white">
-                        Clear
+                    <button onClick={() => navigate('/profile')} type="reset" className="editprofile-clear">
+                        Cancel
                     </button>
                 </div>
             </form>
