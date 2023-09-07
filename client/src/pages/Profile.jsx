@@ -10,6 +10,7 @@ import { AiFillEdit } from "react-icons/ai";
 const Profile = () => {
     const [profile, setProfile] = useState("");
     const [toggle, setToggle] = useState(false);
+    const navigate = useNavigate()
 
     useEffect(() => {
         async function getProfile() {
@@ -53,7 +54,7 @@ const Profile = () => {
                         {profile.location}
                     </p>
                 </div>
-                <span className="profile-edit-btn">
+                <span className="profile-edit-btn" onClick={() => navigate('/edit/profile')}>
 
                     <AiFillEdit />
                 </span>

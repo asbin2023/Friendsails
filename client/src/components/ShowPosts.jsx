@@ -43,7 +43,7 @@ const ShowPosts = () => {
         }
     }
 
-    console.log(profile);
+
 
     function sendToEdit(id, e) {
         e.stopPropagation();
@@ -67,7 +67,7 @@ const ShowPosts = () => {
     function toEdit(id) {
         navigate(`/addComment/${id}`);
     }
-    console.log(posts);
+
 
     return posts.length > 0 ? (
         <div className="showposts-main-div">
