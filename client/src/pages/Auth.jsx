@@ -15,10 +15,13 @@ const Auth = () => {
   }
 
   return (
-    <div style={{height: 1300, maxWidth: 1500}} className="flex justify-center p-10 items-center max-h-screen ml-auto mr-auto">
-      <div className=" flex w-full justify-center  shadow-sm border-2 xl:p-18 p-10 bg-white ">
-        <div className=" w-full pt-10 items-center flex flex-col">
-          <h1 className="mb-24 max-lg:mb-18 font-extrabold tracking-widest text-4xl">
+    <div
+      style={{ height: 1300, maxWidth: 1500 }}
+      className="flex justify-center p-10 items-center max-h-screen ml-auto mr-auto max-sm:p-4 "
+    >
+      <div className=" flex w-full justify-center  shadow-sm border-2 xl:p-18 p-10 max-sm:p-4   bg-white ">
+        <div className=" w-full pt-10 items-center flex flex-col max-sm:pt-2">
+          <h1 className="mb-24 max-lg:mb-18 font-extrabold tracking-widest max-sm:mb-8 text-4xl">
             SOF
           </h1>
 
@@ -33,18 +36,32 @@ const Auth = () => {
               <Signup />
               <p className="text-xs mt-5 ">
                 By signing up, I have read an agree to
-                <br /> <a>Terms</a> and <a>Privacy Policy</a>
+                <br />{" "}
+                <a className="font-bold text-blue-700" href="#">
+                  Terms
+                </a>{" "}
+                and{" "}
+                <a className="font-bold text-blue-700" href="#">
+                  Privacy Policy
+                </a>
               </p>
             </div>
           )}
-          <h3 className="mt-20 cursor-pointer" onClick={handleSwitchToggle}>
+          <h3
+            className="mt-14 text-sm  max-sm:mt-10"
+          >
             {switchToggle
-              ? "First time here? Sign up"
-              : "Already have an account? Sign in"}
+              ? <p>First time here? <span onClick={handleSwitchToggle} className=" cursor-pointer underline underline-offset-2"> Sign up</span></p>
+              : <p>Already have an account? <span onClick={handleSwitchToggle} className="cursor-pointer underline underline-offset-2">Sign in</span></p>}
           </h3>
         </div>
 
-        <img className="max-w-md max-lg:w-5/12 max-lg:object-right object-cover max-md:hidden " width={430} src={guy} alt="" />
+        <img
+          className="max-w-md max-lg:w-5/12 max-lg:object-right object-cover max-md:hidden "
+          width={430}
+          src={guy}
+          alt=""
+        />
       </div>
     </div>
   );
