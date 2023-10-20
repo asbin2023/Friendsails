@@ -38,35 +38,33 @@ const Login = () => {
     handleLoginFormReset();
   }
   return (
-    <div>
-      <form className="flex flex-col" onSubmit={handleLoginFormSubmit}>
-        <input
-          className=""
-          type="text"
-          id="login-username"
-          name="username"
-          required
-          placeholder="Username"
-          value={loginForm.username}
-          onChange={handleLoginFormChange}
-        />
+    <form className=" w-5/12 flex flex-col gap-5" onSubmit={handleLoginFormSubmit}>
+      <input
+        className="sans p-2 outline-none border rounded-md text-xs"
+        type="text"
+        id="login-username"
+        name="username"
+        required
+        placeholder="Enter your username"
+        value={loginForm.username}
+        onChange={handleLoginFormChange}
+      />
 
-        <input
-          className=""
-          type="password"
-          id="login-password"
-          name="password"
-          placeholder="Password"
-          required
-          value={loginForm.password}
-          onChange={handleLoginFormChange}
-        />
+      <input
+        className=" sans p-2 outline-none border rounded-md text-xs"
+        type="password"
+        id="login-password"
+        name="password"
+        placeholder="Enter your password"
+        required
+        value={loginForm.password}
+        onChange={handleLoginFormChange}
+      />
 
-        <button className="" type="submit">
-          Login
-        </button>
-      </form>
-    </div>
+      <button className="sans cursor-pointer text-sm w-9/12 p-1.5 bg-black ml-auto mr-auto rounded-md text-gray-100 mt-2" type="submit">
+        Continue
+      </button>
+    </form>
   );
 };
 

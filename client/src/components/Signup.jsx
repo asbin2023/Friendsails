@@ -52,62 +52,52 @@ const Signup = () => {
   }
 
   return (
-    <div>
-      <form className="auth-signup-form" onSubmit={handleSignupFormSubmit}>
-        <div className="auth-input-group">
-          <label htmlFor="signup-email">Your email</label>
-          <input
-            className="auth-input"
-            type="email"
-            placeholder="Email"
-            maxLength={40}
-            id="signup-email"
-            name="email"
-            required
-            value={signupForm.email}
-            onChange={handleSignupFormChange}
-          />
-        </div>
+    <form
+      className="flex w-5/12 flex-col gap-5"
+      onSubmit={handleSignupFormSubmit}
+    >
+      <input
+        className="sans p-2 outline-none border rounded-md text-xs"
+        type="email"
+        placeholder="Enter your email"
+        maxLength={40}
+        id="signup-email"
+        name="email"
+        required
+        value={signupForm.email}
+        onChange={handleSignupFormChange}
+      />
 
-        <div className="auth-input-group">
-          <label htmlFor="signup-username">Your username</label>
-          <input
-            className="auth-input"
-            type="text"
-            placeholder="Username"
-            minLength={5}
-            maxLength={20}
-            id="signup-username"
-            name="username"
-            required
-            value={signupForm.username}
-            onChange={handleSignupFormChange}
-          />
-        </div>
+      <input
+        className="sans p-2 outline-none border rounded-md text-xs"
+        type="text"
+        placeholder="Create username"
+        minLength={5}
+        maxLength={20}
+        id="signup-username"
+        name="username"
+        required
+        value={signupForm.username}
+        onChange={handleSignupFormChange}
+      />
 
-        <div className="auth-input-group">
-          <label htmlFor="signup-password">Enter your password</label>
-          <input
-            className="auth-input"
-            type="password"
-            required
-            minLength={8}
-            placeholder="Password"
-            maxLength={30}
-            id="signup-password"
-            name="password"
-            value={signupForm.password}
-            onChange={handleSignupFormChange}
-          />
-        </div>
+      <input
+        className="sans p-2 outline-none border rounded-md text-xs"
+        type="password"
+        required
+        minLength={8}
+        placeholder="Create password"
+        maxLength={30}
+        id="signup-password"
+        name="password"
+        value={signupForm.password}
+        onChange={handleSignupFormChange}
+      />
 
-        <div className="auth-button-group">
-          <button className="auth-button" type="submit">
-            Sign up!
-          </button>
-        </div>
-      </form>
-    </div>
+      <button className="mt-2 sans text-sm w-9/12 p-1.5 bg-black ml-auto mr-auto rounded-md text-gray-100" type="submit">
+        Continue
+      </button>
+    </form>
   );
 };
 

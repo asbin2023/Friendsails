@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* *{
+    border: 1px solid gray
+} */
+.sans{
+    font-family: 'Open Sans';
+}
