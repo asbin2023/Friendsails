@@ -38,7 +38,7 @@ const Login = () => {
     handleLoginFormReset();
   }
   return (
-    <form className=" w-5/12 flex flex-col gap-5" onSubmit={handleLoginFormSubmit}>
+    <form className=" w-full max-w-xs flex flex-col gap-5" onSubmit={handleLoginFormSubmit}>
       <input
         className="sans p-2 outline-none border rounded-md text-xs"
         type="text"

@@ -15,11 +15,11 @@ const Auth = () => {
   }
 
   return (
-    <div style={{height: 1000, maxWidth: 1500}} className="flex justify-center items-center max-h-screen ml-auto mr-auto">
-      <div className="m-14  flex w-full justify-center  shadow-sm border-2 p-14 bg-white ">
-        <div className="w-7/12 pt-10 items-center flex flex-col">
-          <h1 className="mb-24 font-extrabold tracking-widest text-2xl">
-            SEA OF FRIENDS
+    <div style={{height: 1300, maxWidth: 1500}} className="flex justify-center p-10 items-center max-h-screen ml-auto mr-auto">
+      <div className=" flex w-full justify-center  shadow-sm border-2 xl:p-18 p-10 bg-white ">
+        <div className=" w-full pt-10 items-center flex flex-col">
+          <h1 className="mb-24 max-lg:mb-18 font-extrabold tracking-widest text-4xl">
+            SOF
           </h1>
 
           {switchToggle ? (
@@ -44,7 +44,7 @@ const Auth = () => {
           </h3>
         </div>
 
-        <img className=" pt-10 object-cover" width={450} src={guy} alt="" />
+        <img className="max-w-md max-lg:w-5/12 max-lg:object-right object-cover max-md:hidden " width={430} src={guy} alt="" />
       </div>
     </div>
   );
