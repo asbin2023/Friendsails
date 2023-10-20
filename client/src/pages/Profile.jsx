@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ShowPosts from "../components/ShowPosts";
 import ProfileNew from "./ProfileNew";
-import "../styles/profile.css";
+
 import { MdOutlineLocationOn } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
 

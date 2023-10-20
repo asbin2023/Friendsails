@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/showposts.css";
+
 import defUser from "../images/default.jpg";
 
 const ShowPosts = () => {

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import "../styles/editpost.css";
+
 
 //"/post/edit/:postId"
 // api/user/posts/:postId --> for backend put for posts

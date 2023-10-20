@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import "../styles/addcomment.css";
+
 import defUser from "../images/default.jpg";
 
 // addComment/:postId

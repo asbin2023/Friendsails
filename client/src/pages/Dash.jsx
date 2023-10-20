@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ShowPosts from "../components/ShowPosts";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "../styles/dash.css";
+
 
 const Dash = () => {
     const navigate = useNavigate();
