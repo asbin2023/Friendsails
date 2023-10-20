@@ -94,7 +94,7 @@ const Signup = () => {
         onChange={handleSignupFormChange}
       />
 
-      <button className="mt-2 sans text-sm w-9/12 p-1.5 bg-black ml-auto mr-auto rounded-md text-gray-100" type="submit">
+      <button className="mt-2 sans text-sm w-9/12 p-1.5 bg-black ml-auto mr-auto rounded-md text-gray-100 hover:bg-gray-700  " type="submit">
         Continue
       </button>
     </form>
