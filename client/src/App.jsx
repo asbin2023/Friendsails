@@ -1,5 +1,5 @@
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import Dash from "./pages/Dash";
+import { Navigate, Route, Routes } from "react-router-dom";
+
 import Notfound from "./pages/Notfound";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
@@ -41,7 +41,7 @@ const App = () => {
                 />
                 <Route
                     path="/dash"
-                    element={token ? <Dash /> : <Navigate to="/auth" />}
+                    element={token ? <BigBox /> : <Navigate to="/auth" />}
                 />
                 <Route
                     path="/post/edit/:postId"
