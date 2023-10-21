@@ -7,7 +7,7 @@ const Dash = () => {
    
 
     return (
-        <div className="ml-64">
+        <div className="sm:ml-64">
             <div className="">
                 <Link to={"/new"}>
                     Make a post

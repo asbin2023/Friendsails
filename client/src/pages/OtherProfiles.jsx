@@ -45,13 +45,13 @@ const OtherProfiles = () => {
         navigate(`/friendPost/${id}`);
     }
     return !profile ? (
-        <div>
+        <div className = "ml-64">
             <p>
                 {username} hasnt set up their profile..
             </p>
         </div>
     ) : (
-        <div className="profile-main-div">
+        <div className="ml-64">
             <div className="profile-first-div">
                 <img src={profile.picture} alt="" />
                 <div>

@@ -45,48 +45,48 @@ const PostForm = () => {
     }
 
     return (
-        <div className="postform-main-div">
-            <form className="postform-container" onSubmit={handleFormSubmit}>
+        <div className="sm:ml-64">
+            <form className="" onSubmit={handleFormSubmit}>
                 <div>
-                    <h1 className="postform-creation">Post Creation:</h1>
+                    <h1 className="">Post Creation:</h1>
                     <br />
-                    <label htmlFor="title" className="postform-label">Post title:</label>
+                    <label htmlFor="title" className="">Post title:</label>
                     <input
                         type="text"
                         id="title"
                         placeholder="your post title"
-                        className="postform-input"
+                        className=""
                         onChange={(e) => setTitle(e.target.value)}
                         value={title}
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="body" className="postform-label">Post body content:</label>
+                    <label htmlFor="body" className="">Post body content:</label>
                     <textarea
                         id="body"
                         cols="20"
                         required
                         placeholder="ur text body"
-                        className="postform-textarea"
+                        className=""
                         value={body}
                         onChange={(e) => setBody(e.target.value)}
                         rows="3"
                     ></textarea>
                 </div>
                 <div>
-                    <label htmlFor="image" className="postform-label">Include an image? (optional)</label>
+                    <label htmlFor="image" className="">Include an image? (optional)</label>
                     <input
                         type="file"
                         id="image"
                         accept="image/*"
-                        className="postform-file-input"
+                        className=""
                         onChange={handleImageChange}
                     />
                 </div>
-                <div className="postform-buttons">
+                <div className="">
                     <button type="submit" className="postform-submit-button">Post</button>
-                    <button type="reset" onClick={() => navigate(-1)} className="postform-cancel-button">
+                    <button type="reset" onClick={() => navigate(-1)} className="">
                         Cancel
                     </button>
                 </div>

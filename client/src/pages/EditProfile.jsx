@@ -75,7 +75,7 @@ const EditProfile = () => {
     }
 
     return profile ? (
-        <div>
+        <div className="ml-64">
             <form onSubmit={handleProfileSubmit} className="editprofile-main-div">
                 <div className="editprofile-div">
                     <h1 className="editprofile-opening">Edit Profile:</h1>
@@ -137,7 +137,7 @@ const EditProfile = () => {
             </form>
         </div>
     ) : (
-        <p>no such profile found. please try again!</p>
+            <p className="ml-64">no such profile found. please try again!</p>
     );
 };
 

@@ -35,7 +35,7 @@ const Search = () => {
 
     return (
       
-        <div className="ml-64">
+        <div className="sm:ml-64">
                 <div className=' p-3 flex flex-col w-7/12'>
                     <div className='flex gap-3 items-center'>
                         <label htmlFor="user">User search:</label>
