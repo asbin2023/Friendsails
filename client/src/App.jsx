@@ -14,6 +14,7 @@ import OtherProfiles from "./pages/OtherProfiles";
 import FriendPosts from "./components/FriendPosts";
 import Chats from "./pages/Chats";
 import EditProfile from "./pages/EditProfile";
+import BigBox from "./pages/BigBox";
 
 
 
@@ -28,7 +29,7 @@ const App = () => {
                 <Route
                     path="/"
                     exact
-                    element={token ? <Dash /> : <Navigate to="/auth" />}
+                    element={token ? <BigBox /> : <Navigate to="/auth" />}
                 />
                 <Route
                     path="/new"
