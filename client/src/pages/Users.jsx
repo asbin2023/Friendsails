@@ -22,7 +22,7 @@ const Users = () => {
     getAllUsers();
   }, []);
   return (
-    <div>
+    <div className="ml-64">
       <h1>List of users:</h1>
 
       {allUsers &&

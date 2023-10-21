@@ -16,8 +16,8 @@ const Auth = () => {
 
   return (
     <div
-      style={{ height: 1300 }}
-      className=" max-sm:p-4 max-sm:m-2"
+      style={{ height: 1300, maxWidth: 1500 }}
+      className="flex justify-center p-10 items-center max-h-screen ml-auto mr-auto max-sm:p-4 max-sm:m-2 "
     >
       <div className="  flex w-full justify-center  shadow-sm border-2 xl:p-18 p-10 max-sm:p-4  bg-white ">
         <div className=" w-full pt-10 items-center flex flex-col max-sm:pt-2">
@@ -74,8 +74,8 @@ const Auth = () => {
         </div>
 
         <img
-          className="max-w-md max-xl:w-4/12 max-lg:object-right object-cover max-md:hidden "
-          width={400}
+          className="max-w-md max-lg:w-5/12 max-lg:object-right object-cover max-md:hidden "
+          width={430}
           src={guy}
           alt=""
         />

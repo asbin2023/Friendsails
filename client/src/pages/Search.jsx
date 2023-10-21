@@ -34,8 +34,8 @@ const Search = () => {
     }
 
     return (
-        <div>
-            <div>
+      
+        <div className="ml-64">
                 <div className=' p-3 flex flex-col w-7/12'>
                     <div className='flex gap-3 items-center'>
                         <label htmlFor="user">User search:</label>
@@ -51,7 +51,7 @@ const Search = () => {
                     </h1>
                 </div> : 'No results found '}
             </div>
-        </div>
+        
     )
 }
 

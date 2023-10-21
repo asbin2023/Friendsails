@@ -7,7 +7,7 @@ const Dash = () => {
    
 
     return (
-        <div className="">
+        <div className="ml-64">
             <div className="">
                 <Link to={"/new"}>
                     Make a post
@@ -15,7 +15,6 @@ const Dash = () => {
                 
             </div>
             <div className="">
-
                 <ShowPosts />
             </div>
         </div>

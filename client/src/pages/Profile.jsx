@@ -33,7 +33,7 @@ const Profile = () => {
     }, []);
 
     return !profile ? (
-        <div>
+        <div className="ml-64">
             {!toggle && <p style={{ marginTop: '100px', marginLeft: '170px', fontSize: '30px' }}>
                 Looks like your profile is empty. Click here to set up your profile.
             </p>}
@@ -42,7 +42,7 @@ const Profile = () => {
             {toggle && <ProfileNew />}
         </div>
     ) : (
-        <div className="profile-main-div">
+            <div className="ml-64">
             <div className="profile-first-div">
                 <img src={profile.picture} alt="" />
                 <div>
