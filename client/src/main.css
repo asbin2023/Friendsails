@@ -7,6 +7,9 @@
 /* *{
     border: 1px solid gray
 } */
+*{
+    scroll-behavior: smooth;
+}
 .sans{
     font-family: 'Open Sans';
 }
