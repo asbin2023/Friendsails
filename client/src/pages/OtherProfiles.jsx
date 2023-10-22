@@ -12,6 +12,7 @@ const OtherProfiles = () => {
     const [posts, setPosts] = useState("");
 
     console.log(posts);
+    
 
     async function getPosts() {
         try {

@@ -57,7 +57,7 @@ const Signup = () => {
       onSubmit={handleSignupFormSubmit}
     >
       <input
-        className="sans p-2 outline-none border rounded-md text-xs"
+        className="p-2 outline-none border rounded-md text-xs"
         type="email"
         placeholder="Enter your email"
         maxLength={40}
@@ -69,7 +69,7 @@ const Signup = () => {
       />
 
       <input
-        className="sans p-2 outline-none border rounded-md text-xs"
+        className="p-2 outline-none border rounded-md text-xs"
         type="text"
         placeholder="Create username"
         minLength={5}
@@ -82,7 +82,7 @@ const Signup = () => {
       />
 
       <input
-        className="sans p-2 outline-none border rounded-md text-xs"
+        className="p-2 outline-none border rounded-md text-xs"
         type="password"
         required
         minLength={8}
@@ -94,7 +94,7 @@ const Signup = () => {
         onChange={handleSignupFormChange}
       />
 
-      <button className="mt-2 sans text-sm w-9/12 p-1.5 bg-black ml-auto mr-auto rounded-md text-gray-100 hover:bg-gray-700  " type="submit">
+      <button className="mt-2 text-sm w-9/12 p-1.5 bg-black ml-auto mr-auto rounded-md text-gray-100 hover:bg-gray-700  " type="submit">
         Continue
       </button>
     </form>

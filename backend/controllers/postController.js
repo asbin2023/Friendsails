@@ -131,3 +131,25 @@ module.exports.getSinglePost = async (req, res) => {
     console.log(err);
   }
 };
+
+module.exports.getAllPosts = async (req, res) => {
+  try {
+    let { id, username } = req;
+
+    if (!id || !username) {
+      return res.status(404).json("unauthorized");
+    }
+    const posts = await Post.find().populate(
+      "comments",
+      "commentText createdAt user edited userPicture name"
+    );
+    console.log(posts.length);
+    if (posts.length < 1) {
+      return res.status(400).json({ err: "promblem with get all posts in controller" });
+    }
+
+    res.status(200).json({ posts });
+  } catch (err) {
+    console.log(err.message);
+  }
+};

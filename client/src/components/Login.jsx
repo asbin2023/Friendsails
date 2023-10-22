@@ -40,7 +40,7 @@ const Login = () => {
   return (
     <form className=" w-full max-w-xs flex flex-col gap-5" onSubmit={handleLoginFormSubmit}>
       <input
-        className="sans p-2 outline-none border rounded-md text-xs"
+        className=" p-2 outline-none border rounded-md text-xs"
         type="text"
         id="login-username"
         name="username"
@@ -51,7 +51,7 @@ const Login = () => {
       />
 
       <input
-        className=" sans p-2 outline-none border rounded-md text-xs"
+        className="  p-2 outline-none border rounded-md text-xs"
         type="password"
         id="login-password"
         name="password"
@@ -62,7 +62,7 @@ const Login = () => {
       />
 
     
-      <button className="mt-2 sans text-sm w-9/12 p-1.5 bg-black ml-auto mr-auto rounded-md text-gray-100 hover:bg-gray-700  " type="submit">
+      <button className="mt-2 text-sm w-9/12 p-1.5 bg-black ml-auto mr-auto rounded-md text-gray-100 hover:bg-gray-700  " type="submit">
         Continue
       </button>
 

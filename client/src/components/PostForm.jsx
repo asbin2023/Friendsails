@@ -39,7 +39,7 @@ const PostForm = () => {
   }
 
   return (
-    <div className="sm:ml-80  max-w-sm ml-16 mt-8 sm:mt-14  ">
+    <div className="sm:ml-80 max-md:max-w-xs max-md:sm:ml-72 max-w-sm m-10 mt-8 sm:mt-14 max-sm:max-w-full  ">
       <div className="flex items-center gap-10 ">
         <button
           onClick={() => navigate(-1)}
@@ -66,14 +66,14 @@ const PostForm = () => {
       </div>
 
       <form
-        className="flex flex-col gap-7  mt-10 w-full"
+        className="flex flex-col gap-7  mt-16 w-full"
         onSubmit={handleFormSubmit}
       >
         <input
           type="text"
           id="title"
           placeholder="Enter post title"
-          className="rounded-md p-3 text-sm  border-2 border-gray-400 outline-none"
+          className=" rounded-md p-3 text-sm  border-2 border-gray-400 "
           onChange={(e) => setTitle(e.target.value)}
           value={title}
           required
@@ -84,14 +84,15 @@ const PostForm = () => {
           cols="20"
           required
           placeholder="Enter text body"
-          className="rounded-md p-3 text-sm border-2 outline-none border-gray-400 resize-none"
+          className="rounded-md p-3 text-sm border-2  border-gray-400 resize-none"
           value={body}
           onChange={(e) => setBody(e.target.value)}
           rows="5"
         ></textarea>
 
         <input
-          className="block  text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-200 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+          onChange={handleImageChange}
+          className="block  outline-none text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-200  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
           id="small_size"
           accept="image/*"
           type="file"

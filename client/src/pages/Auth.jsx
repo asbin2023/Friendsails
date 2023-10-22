@@ -27,12 +27,12 @@ const Auth = () => {
 
           {switchToggle ? (
             <div className="flex flex-col items-center w-full ">
-              <h2 className="sans font-bold text-md mb-7">Welcome back</h2>
+              <h2 className="font-bold text-md mb-7">Welcome back</h2>
               <Login />
             </div>
           ) : (
             <div className="flex flex-col items-center w-full gap-5">
-              <h2 className="sans font-bold text-md mb-7">Create account</h2>
+              <h2 className="font-bold text-md mb-7">Create account</h2>
               <Signup />
               <p className="text-xs mt-5 ">
                 By signing up, I have read an agree to

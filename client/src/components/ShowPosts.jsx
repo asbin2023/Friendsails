@@ -32,7 +32,7 @@ const ShowPosts = () => {
     async function getPosts() {
         let token = localStorage.getItem("token");
         try {
-            const posts = await axios.get("/api/user/posts", {
+            const posts = await axios.get("/api/user/posts/all", {
                 headers: {
                     Authorization: token,
                 },
@@ -43,7 +43,7 @@ const ShowPosts = () => {
         }
     }
 
-
+    console.log(posts)
 
     function sendToEdit(id, e) {
         e.stopPropagation();
